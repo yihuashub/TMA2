@@ -6,11 +6,11 @@ require_once('../components/navbar.php');
 
 $salt = time();
 $register = false;
-
+$message = '';
 if(strcmp($_REQUEST['password'],$_REQUEST['repassword'] === 0))
 {
     if (pc_validate($_REQUEST['firstname'],$_REQUEST['lastname'], $_REQUEST['password'],$salt)) {
-        setcookie('login', $_REQUEST['username'] . ',' . md5($_REQUEST['password']. $salt));
+        setcookie('login', $_REQUEST['username'] . '@' . md5($_REQUEST['password']. $salt));
         $register = true;
     }
 
@@ -26,6 +26,7 @@ if(strcmp($_REQUEST['password'],$_REQUEST['repassword'] === 0))
             return true;
         }
         else {
+            $message = $db->error();
             return false;
         }
     }
@@ -187,7 +188,7 @@ echoHead();
                 <div class="text-center">
                     <i class="fa fa-thumbs-down" style="font-size:48px;color:red"></i>
                     <p class="lead text-gray-800 mb-5">Sorry Please Try Again.</p>
-                    <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
+                    <p class="text-gray-500 mb-0">'.$message.'</p>
                     <a href="tma2.html">&larr; Back to Dashboard</a>
                 </div>';
                 }
