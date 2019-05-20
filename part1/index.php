@@ -8,8 +8,8 @@
 require_once('../config/database.php');
 require_once('../components/auth_user.php');
 
-if(!user){
-    $link = './';
+if(!$user){
+    $link = './login.php';
     header( "Location: $link" ) ;
 }
 
