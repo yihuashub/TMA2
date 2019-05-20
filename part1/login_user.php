@@ -42,13 +42,16 @@ if(isset($_POST))
 
     if($result)
     {
-        if (strcmp($result['password'],$password) === 0) {
-            setcookie('login', $email . ',' . md5($password. $result['salt']));
+        $hashPassword = md5($password. $result['salt']);
+        if (strcmp($hashPassword,$password) === 0) {
+            setcookie('login', $email . ',' . $hashPassword);
             $message = "You were successful login!";
             $login = true;
+        }else{
+            $message="Your Password is invalid";
         }
     }else{
-        $message="Your username or password is invalid";
+        $message="The User is not exist";
     }
 }
 
