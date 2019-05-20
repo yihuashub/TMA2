@@ -13,12 +13,33 @@ $salt = time();
 $register = false;
 $message = '';
 
-function pc_validate($firstName,$lastName,$password,$salt)
+$firstName = "";
+$lastName = "";
+$password = "";
+$repassword = "";
+$email = "";
+
+function check_exit($email)
+{
+    $db = new Database();
+
+    $sql = "SELECT * FROM `users` WHERE `email` = '$email' ";
+    $result = $db->query($sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+function pc_validate($email,$firstName,$lastName,$password,$salt)
 {
     $db = new Database();
     $hashPassword = md5($password. $salt);
 
-    $sql = "INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `salt`) VALUES (NULL, '$firstName', '$lastName', '$hashPassword', '$salt'); ";
+    $sql = "INSERT INTO `users` (`id`, `email`, `firstname`, `lastname`, `password`, `salt`) VALUES (NULL, '$email', '$firstName', '$lastName', '$hashPassword', '$salt'); ";
     $result = $db->query($sql);
 
     if ($result === TRUE) {
@@ -30,16 +51,31 @@ function pc_validate($firstName,$lastName,$password,$salt)
     }
 }
 
-if(strcmp($_REQUEST['password'],$_REQUEST['repassword'] === 0))
+if(isset($_POST))
 {
-    if (pc_validate($_REQUEST['firstname'],$_REQUEST['lastname'], $_REQUEST['password'],$salt)) {
-        setcookie('login', $_REQUEST['username'] . '@' . md5($_REQUEST['password']. $salt));
-        $message = "You were successful registered!";
-        $register = true;
+    $firstName = $_POST['firstname'];
+    $lastName = $_POST['lastname'];
+    $password = $_POST['password'];
+    $repassword = $_POST['repassword'];
+    $email = $_POST['email'];
+
+    if(strcmp($password,$repassword) === 0)
+    {
+        if(check_exit($email))
+        {
+            if (pc_validate($email,$firstName,$lastName,$password,$salt)) {
+                setcookie('login', $email . '@' . md5($password. $salt));
+                $message = "You were successful registered!";
+                $register = true;
+            }
+        }else{
+            $message="The User Already Exist.";
+        }
+    }else{
+        $message="The passwords do not match.";
     }
-}else{
-    $message="The passwords do not match.";
 }
+
 
 
 ?>
