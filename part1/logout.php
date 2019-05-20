@@ -11,7 +11,7 @@ require_once('../components/navbar.php');
 $logout = false;
 if (isset($_COOKIE['login'])) {
     unset($_COOKIE['login']);
-    setcookie('login', null, -1, '/');
+//    setcookie('login', null, -1, '/');
     return $logout = true;
 }
 ?>
