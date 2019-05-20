@@ -64,7 +64,7 @@ if(isset($_POST))
         if(check_exit($email))
         {
             if (pc_validate($email,$firstName,$lastName,$password,$salt)) {
-                setcookie('login', $email . '@' . md5($password. $salt));
+                setcookie('login', $email . ',' . md5($password. $salt));
                 $message = "You were successful registered!";
                 $register = true;
             }
