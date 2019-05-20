@@ -1,37 +1,7 @@
 <?php
-require_once ('../config/database.php');
 require_once('../components/head.php');
 require_once('../components/footer.php');
 require_once('../components/navbar.php');
-
-$salt = time();
-$register = false;
-
-if(strcmp($_REQUEST['password'],$_REQUEST['repassword'] === 0))
-{
-    if (pc_validate($_REQUEST['firstname'],$_REQUEST['lastname'], $_REQUEST['password'],$salt)) {
-        setcookie('login', $_REQUEST['username'] . ',' . md5($_REQUEST['password']. $salt));
-        $register = true;
-    }
-
-    function pc_validate($firstName,$lastName,$password,$salt)
-    {
-        $db = new Database();
-        $hashPassword = md5($password. $salt);
-
-        $sql = "INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `salt`) VALUES (NULL, '$firstName', '$lastName', '$hashPassword', '$salt'); ";
-        $result = $db->query($sql);
-
-        if ($result === TRUE) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -172,28 +142,14 @@ echoHead();
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <?php
-                if($register)
-                {
-                    echo '
+
+                <!-- Text -->
                 <div class="text-center">
                     <i class="fa fa-thumbs-up" style="font-size:48px;color:green"></i>
                     <p class="lead text-gray-800 mb-5">All Set!</p>
                     <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
                     <a href="tma2.html">&larr; Back to Dashboard</a>
-                </div>';
-                }else{
-                    echo '
-                <div class="text-center">
-                    <i class="fa fa-thumbs-down" style="font-size:48px;color:red"></i>
-                    <p class="lead text-gray-800 mb-5">Sorry Please Try Again.</p>
-                    <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
-                    <a href="tma2.html">&larr; Back to Dashboard</a>
-                </div>';
-                }
-                ?>
-                <!-- Text -->
-
+                </div>
 
             </div>
             <!-- /.container-fluid -->
@@ -231,5 +187,4 @@ echoHead();
 </body>
 
 </html>
-
 
