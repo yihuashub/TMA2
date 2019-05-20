@@ -1,24 +1,8 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: yihua
- * Date: 2019-05-16
- * Time: 4:21 PM
- */
-require_once('../config/database.php');
-require_once('../components/auth_user.php');
-
-if(!$user){
-    $link = './login.php';
-    header( "Location: $link" ) ;
-}
-
 require_once('../components/head.php');
 require_once('../components/footer.php');
 require_once('../components/navbar.php');
-
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 
 <?php
@@ -41,112 +25,59 @@ echoHead();
             ?>
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
-                <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                </div>
+            <div class="container">
+                <!-- Outer Row -->
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-5 ">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">The TOP 10 Bookmarks</h1>
+                                    </div>
 
-                <div class="row">
-
-                    <!-- Area Chart -->
-                    <div class="col-xl-8 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Bookmarking List</h6>
-                                <div class="dropdown no-arrow">
-                                    <a href="#" class="btn btn-success btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-plus-circle"></i>
-                                        </span>
-                                        <span class="text">Add a new Bookmarking</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Dapibus ac facilisis in
-                                        <span class="badge ">
-                                            <a href="#" class="btn btn-primary btn-circle btn-sm">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-circle btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Dapibus ac facilisis in
-                                        <span class="badge ">
-                                            <a href="#" class="btn btn-primary btn-circle btn-sm">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-circle btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Dapibus ac facilisis in
-                                        <span class="badge ">
-                                            <a href="#" class="btn btn-primary btn-circle btn-sm">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-circle btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pie Chart -->
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="col-12 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings
-                                                (Monthly)
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>
+                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur
+                                            ac</a>
+                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum
+                                            at eros</a>
+                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>
+                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur
+                                            ac</a>
+                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum
+                                            at eros</a>
+                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>
+                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur
+                                            ac</a>
+                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum
+                                            at eros</a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 mb-4">
-                            <div class="card bg-warning text-white shadow">
-                                <div class="card-body">
-                                    Warning
-                                    <div class="text-white-50 small">#f6c23e</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mb-4">
-                            <div class="card bg-danger text-white shadow">
-                                <div class="card-body">
-                                    Danger
-                                    <div class="text-white-50 small">#e74a3b</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mb-4">
-                            <div class="card bg-secondary text-white shadow">
-                                <div class="card-body">
-                                    Secondary
-                                    <div class="text-white-50 small">#858796</div>
+                            <div class="col-lg-7">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome to bookmarking!</h1>
+                                    </div>
+                                    <hr>
+                                    <div class="text-center">
+                                        <p>Already have an account?</p>
+                                    </div>
+                                    <a href="./login.php" class="btn btn-google btn-user btn-block">
+                                        <i class="fab fa-google fa-fw"></i> Login
+                                    </a>
+                                    <br/>
+                                    <div class="text-center">
+                                        <p>Dont't have an account yet?</p>
+                                    </div>
+                                    <a href="./register.php" class="btn btn-google btn-user btn-block">
+                                        <i class="fab fa-google fa-fw"></i> Register now!
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -154,17 +85,20 @@ echoHead();
                 </div>
 
             </div>
-            <!-- /.container-fluid -->
 
         </div>
-        <!-- End of Main Content -->
-
-        <?php
-        echoFooter();
-        ?>
-
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+<?php
+echoFooter();
+?>
+
+</div>
+<!-- End of Content Wrapper -->
 
 </div>
 <!-- End of Page Wrapper -->
@@ -174,22 +108,23 @@ echoHead();
     <i class="fas fa-angle-up"></i>
 </a>
 
-<?php
-echoLogoutModal();
-?>
-
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="../js/sb-admin-2.min.js"></script>
+<script src="js/sb-admin-2.min.js"></script>
 
+<!-- Page level plugins -->
+<script src="vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 
 </html>
-

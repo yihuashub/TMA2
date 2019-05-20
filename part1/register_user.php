@@ -111,14 +111,14 @@ echoHead();
                 <div class="text-center">
                     <i class="fa fa-thumbs-up" style="font-size:48px;color:green"></i>
                     <p class="lead text-gray-800 mb-5">All Set! '.$message.'</p>
-                    <a href="/">&larr; Back to Dashboard</a>
+                    <a href="dashboard.php">&larr; Go To Dashboard</a>
                 </div>';
                 }else{
                     echo '
                 <div class="text-center">
                     <i class="fa fa-thumbs-down" style="font-size:48px;color:red"></i>
                     <p class="lead text-gray-800 mb-5">Sorry Please Try Again. '.$message.'</p>
-                    <a href="/">&larr; Back to Dashboard</a>
+                    <a href="register.php">&larr; Go Back</a>
                 </div>';
                 }
                 ?>
