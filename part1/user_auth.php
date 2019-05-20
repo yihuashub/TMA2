@@ -12,29 +12,32 @@ require_once('../components/navbar.php');
 $salt = time();
 $register = false;
 $message = '';
+
+function pc_validate($firstName,$lastName,$password,$salt)
+{
+    $db = new Database();
+    $hashPassword = md5($password. $salt);
+
+    $sql = "INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `salt`) VALUES (NULL, '$firstName', '$lastName', '$hashPassword', '$salt'); ";
+    $result = $db->query($sql);
+
+    if ($result === TRUE) {
+        return true;
+    }
+    else {
+        $message = $db->error();
+        return false;
+    }
+}
+
 if(strcmp($_REQUEST['password'],$_REQUEST['repassword'] === 0))
 {
     if (pc_validate($_REQUEST['firstname'],$_REQUEST['lastname'], $_REQUEST['password'],$salt)) {
         setcookie('login', $_REQUEST['username'] . '@' . md5($_REQUEST['password']. $salt));
         $register = true;
     }
-
-    function pc_validate($firstName,$lastName,$password,$salt)
-    {
-        $db = new Database();
-        $hashPassword = md5($password. $salt);
-
-        $sql = "INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `salt`) VALUES (NULL, '$firstName', '$lastName', '$hashPassword', '$salt'); ";
-        $result = $db->query($sql);
-
-        if ($result === TRUE) {
-            return true;
-        }
-        else {
-            $message = $db->error();
-            return false;
-        }
-    }
+}else{
+    $message="The passwords do not match.";
 }
 
 
