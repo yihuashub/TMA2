@@ -161,16 +161,16 @@ echoHead();
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
-        <div id="content">
+                <!-- Main Content -->
+                <div id="content">
 
-            <?php
-            echoNavbar()
-            ?>
+                    <?php
+                    echoNavbar()
+                    ?>
 
-            <!-- Begin Page Content -->
+                    <!-- Begin Page Content -->
             <div class="container-fluid">
                 <?php
                 if($register)

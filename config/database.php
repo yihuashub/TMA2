@@ -1,4 +1,5 @@
 <?php
+require_once ('./config.php');
 class Database {
     private $link;
     private $host, $username, $password, $database;
