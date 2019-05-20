@@ -43,8 +43,7 @@ if(isset($_POST))
     if($result)
     {
         $hashPassword = md5($password. $result['salt']);
-        echo $result['salt']. " ".$password." ".$hashPassword;
-        if (strcmp($hashPassword,$_POST['password']) === 0) {
+        if (strcmp($hashPassword,$result['password']) === 0) {
             setcookie('login', $email . ',' . $hashPassword);
             $message = "You were successful login!";
             $login = true;
