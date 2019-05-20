@@ -38,7 +38,7 @@ echoHead();
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                                     </div>
-                                    <form class="user" method="post" action="./user_auth.php">
+                                    <form class="user" method="post" action="register_user.php">
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="text" name="firstname" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">

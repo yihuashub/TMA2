@@ -4,7 +4,7 @@ ini_set("track_errors", 1);
 ini_set("html_errors", 1);
 error_reporting(E_ALL);
 
-function get_hash($email)
+function get_user($email)
 {
     $db = new Database();
 
@@ -24,7 +24,7 @@ $user = null;
 if ($_COOKIE['login']) {
     $db = new Database();
     list($c_email, $cookie_hash) = explode(',', $_COOKIE['login']);
-    $result = get_hash($c_email);
+    $result = get_user($c_email);
 
     if($result){
         if (strcmp($result['password'],$cookie_hash) === 0) {

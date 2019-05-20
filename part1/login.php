@@ -43,9 +43,9 @@ echoHead();
                                             <div class="text-center">
                                                 <h1 class="h4 text-gray-900 mb-4">Welcome Join Us!</h1>
                                             </div>
-                                            <form class="user" method="post" action="./user_auth.php">
+                                            <form class="user" method="post" action="login_user.php">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control form-control-user" id="inputUsername" name="username" aria-describedby="emailHelp" placeholder="Enter Your User Name...">
+                                                    <input type="email" class="form-control form-control-user" id="inputEmail" name="email" aria-describedby="emailHelp" placeholder="Enter Your Email...">
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="password" class="form-control form-control-user" id="inputPassword" name="password" placeholder="Password">
