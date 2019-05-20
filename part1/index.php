@@ -6,9 +6,9 @@
  * Time: 4:21 PM
  */
 
-require_once ('./components/head.php');
-require_once ('./components/footer.php');
-require_once ('./components/navbar.php');
+require_once('../components/head.php');
+require_once('../components/footer.php');
+require_once('../components/navbar.php');
 
 ?>
 <!DOCTYPE html>
@@ -172,14 +172,14 @@ echoLogoutModal();
 ?>
 
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+<script src="../js/sb-admin-2.min.js"></script>
 
 
 </body>
