@@ -1,8 +1,4 @@
 <?php
-ini_set("display_errors", 1);
-ini_set("track_errors", 1);
-ini_set("html_errors", 1);
-error_reporting(E_ALL);
 
 require_once('../components/head.php');
 require_once('../components/footer.php');
@@ -11,7 +7,7 @@ require_once('../components/navbar.php');
 $logout = false;
 if (isset($_COOKIE['login'])) {
     unset($_COOKIE['login']);
-//    setcookie('login', null, -1, '/');
+    setcookie('login', null, -1, '/');
     return $logout = true;
 }
 ?>
@@ -35,7 +31,7 @@ echoHead();
         <div id="content">
 
             <?php
-            echoNavbar()
+            echoNavbar($user)
             ?>
 
             <!-- Begin Page Content -->

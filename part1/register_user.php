@@ -99,7 +99,7 @@ echoHead();
                 <div id="content">
 
                     <?php
-                    echoNavbar()
+                    echoNavbar($user)
                     ?>
 
                     <!-- Begin Page Content -->
