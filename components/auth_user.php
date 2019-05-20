@@ -23,10 +23,12 @@ $user = null;
 
 if ($_COOKIE['login']) {
     $db = new Database();
-    list($c_email, $cookie_hash) = split(',', $_COOKIE['login']);
+    list($c_email, $cookie_hash) = explode(',', $_COOKIE['login']);
     $result = get_hash($c_email);
 
-    if (strcmp($result['password'],$cookie_hash) === 0) {
-        $user = $result;
+    if($result){
+        if (strcmp($result['password'],$cookie_hash) === 0) {
+            $user = $result;
+        }
     }
 }
