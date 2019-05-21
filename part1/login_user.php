@@ -4,7 +4,7 @@ ini_set("track_errors", 1);
 ini_set("html_errors", 1);
 error_reporting(E_ALL);
 
-require_once ('../config/database.php');
+require_once('../config/database.php');
 require_once('../components/head.php');
 require_once('../components/footer.php');
 require_once('../components/navbar.php');
@@ -135,21 +135,21 @@ echoLogoutModal();
 </a>
 
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../shared/vendor/jquery/jquery.min.js"></script>
+<script src="../shared/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../shared/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="../js/sb-admin-2.min.js"></script>
+<script src="../shared/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="../vendor/chart.js/Chart.min.js"></script>
+<script src="../shared/vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="../js/demo/chart-area-demo.js"></script>
-<script src="../js/demo/chart-pie-demo.js"></script>
+<script src="../shared/js/demo/chart-area-demo.js"></script>
+<script src="../shared/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

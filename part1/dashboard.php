@@ -69,7 +69,7 @@ echoHead();
                             <div class="card-body">
                                 <ul class="list-group">
                                     <?php
-                                    require_once ('../components/bookmark.php');
+                                    require_once('../components/bookmark.php');
 
                                     $db = new Database();
                                     $bookmark = new Bookmark($db,$user['id']);
@@ -80,7 +80,9 @@ echoHead();
                                         foreach ($results as $url) {
                                             echo '
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a href="'.$url["url"].'" target="_blank">
                                         '.$url["url"].'
+                                            </a>
                                         <span class="badge ">
                                             <a href="'.$url["url"].'" class="btn btn-primary btn-circle btn-sm">
                                                 <i class="fas fa-pencil-alt"></i>
@@ -172,14 +174,14 @@ echoLogoutModal();
 ?>
 
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../shared/vendor/jquery/jquery.min.js"></script>
+<script src="../shared/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../shared/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="../js/sb-admin-2.min.js"></script>
+<script src="../shared/js/sb-admin-2.min.js"></script>
 
 
 </body>

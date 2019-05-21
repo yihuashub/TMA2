@@ -41,7 +41,7 @@ echoHead();
 
                                     <div class="list-group">
                                         <?php
-                                        require_once ('../components/bookmark.php');
+                                        require_once('../components/bookmark.php');
 
                                         $db = new Database();
                                         $bookmark = new Bookmark($db,null);
@@ -115,21 +115,21 @@ echoLogoutModal();
 </a>
 
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../shared/vendor/jquery/jquery.min.js"></script>
+<script src="../shared/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../shared/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="../js/sb-admin-2.min.js"></script>
+<script src="../shared/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="../vendor/chart.js/Chart.min.js"></script>
+<script src="../shared/vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="../js/demo/chart-area-demo.js"></script>
-<script src="../js/demo/chart-pie-demo.js"></script>
+<script src="../shared/js/demo/chart-area-demo.js"></script>
+<script src="../shared/js/demo/chart-pie-demo.js"></script>
 
 </body>
 
