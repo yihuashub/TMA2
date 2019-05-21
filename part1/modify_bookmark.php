@@ -18,11 +18,11 @@ require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
 
-function check_exit($id)
+function check_exit($id,$user_id)
 {
     $db = new Database();
 
-    $sql = "SELECT * FROM `bookmarks` WHERE `id` = '$id' ";
+    $sql = "SELECT * FROM `bookmarks` WHERE `id` = '$id' AND `user_id` = '$user_id'";
     $result = $db->query($sql);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -30,25 +30,6 @@ function check_exit($id)
     }
     else{
         return false;
-    }
-}
-
-$message = null;
-$method = null;
-$bookmark_id =null;
-
-if(isset($_GET))
-{
-    if(!empty($_GET['method']) )
-    {
-        $method = $_GET['method'];
-
-        if(!empty($_GET['bookmark_id'])){
-            $bookmark_id = $_GET['bookmark_id'];
-        }
-    }
-    else{
-        $message="Error 401";
     }
 }
 
@@ -70,8 +51,8 @@ function echoAddBookmark(){
         </form>';
 }
 
-function echoEditBookmark($id){
-    $result = check_exit($id);
+function echoEditBookmark($id,$user_id){
+    $result = check_exit($id,$user_id);
 
     if($result){
         echo '
@@ -95,6 +76,27 @@ function echoEditBookmark($id){
     }
 
 }
+
+$message = null;
+$method = null;
+$bookmark_id =null;
+
+if(isset($_GET))
+{
+    if(!empty($_GET['method']) )
+    {
+        $method = $_GET['method'];
+
+        if(!empty($_GET['bookmark_id'])){
+            $bookmark_id = $_GET['bookmark_id'];
+        }
+    }
+    else{
+        $message="Error 401";
+    }
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -143,12 +145,11 @@ echoHead();
                                     echo "<h2 style='color: red'>".$message."</h2>";
                                 }
                                 else{
-                                    if($method === 1)
-                                    {
+                                    if(strcmp($method,'1') === 0) {
                                         echoAddBookmark();
 
-                                    }else if($method === 2){
-                                        echoEditBookmark($bookmark_id);
+                                    }  else if(strcmp($method,'2') === 0){
+                                        echoEditBookmark($bookmark_id,$user['id']);
                                     }
                                 }
                                 ?>
