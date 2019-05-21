@@ -40,24 +40,40 @@ echoHead();
                                     </div>
 
                                     <div class="list-group">
-                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur
-                                            ac</a>
-                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum
-                                            at eros</a>
-                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur
-                                            ac</a>
-                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum
-                                            at eros</a>
-                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur
-                                            ac</a>
-                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum
-                                            at eros</a>
+                                        <?php
+                                        require_once ('./components/bookmark.php');
+
+                                        $db = new Database();
+                                        $bookmark = new Bookmark($db,null);
+
+                                        $results = $bookmark->get_top_ten();
+
+                                        if($results){
+                                            var_dump($results);
+                                        }else{
+                                            echo `<p>Sorry the database is empty</p>`;
+                                        }
+
+
+                                        ?>
+<!--                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>-->
+<!--                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>-->
+<!--                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur-->
+<!--                                            ac</a>-->
+<!--                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum-->
+<!--                                            at eros</a>-->
+<!--                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>-->
+<!--                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>-->
+<!--                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur-->
+<!--                                            ac</a>-->
+<!--                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum-->
+<!--                                            at eros</a>-->
+<!--                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>-->
+<!--                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>-->
+<!--                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur-->
+<!--                                            ac</a>-->
+<!--                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum-->
+<!--                                            at eros</a>-->
                                     </div>
                                 </div>
                             </div>
