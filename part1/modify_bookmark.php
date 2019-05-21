@@ -33,6 +33,10 @@ function check_exit($id)
     }
 }
 
+$message = null;
+$method = null;
+$bookmark_id =null;
+
 if(isset($_GET))
 {
     if(!empty($_GET['method']) )
