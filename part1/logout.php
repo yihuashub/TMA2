@@ -8,6 +8,11 @@ $logout = true;
 
 ?>
 
+<?php
+if (isset($_COOKIE['login'])) {
+    setcookie("login", "", time()-3600);
+}
+?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -97,9 +102,3 @@ $logout = true;
 
     </html>
 
-
-<?php
-if (isset($_COOKIE['login'])) {
-    setcookie("login", "", time()-3600);
-}
-?>
