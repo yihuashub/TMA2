@@ -20,8 +20,11 @@ function get_user($email)
 }
 
 $user = null;
-
-if ($_COOKIE['login']) {
+$login = '';
+if (!empty($_COOKIE['login'])) {
+    $login = $_COOKIE['login'];
+}
+if ($login) {
     $db = new Database();
     list($c_email, $cookie_hash) = explode(',', $_COOKIE['login']);
     $result = get_user($c_email);
