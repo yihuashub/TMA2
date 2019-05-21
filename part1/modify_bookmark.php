@@ -35,10 +35,13 @@ function check_exit($id)
 
 if(isset($_GET))
 {
-    if(!empty($_GET['bookmark_id']) && !empty($_GET['method']) )
+    if(!empty($_GET['method']) )
     {
-        $bookmark_id = $_GET['bookmark_id'];
         $method = $_GET['method'];
+
+        if(!empty($_GET['bookmark_id'])){
+            $bookmark_id = $_GET['bookmark_id'];
+        }
     }
     else{
         $message="Error 401";
@@ -131,12 +134,18 @@ echoHead();
                             <!-- Card Body -->
                             <div class="card-body">
                                 <?php
-                                if($method === 1)
+                                if($message)
                                 {
-                                    echoAddBookmark();
+                                    echo "<h2 style='color: red'>".$message."</h2>";
+                                }
+                                else{
+                                    if($method === 1)
+                                    {
+                                        echoAddBookmark();
 
-                                }else if($method === 2){
-                                    echoEditBookmark($bookmark_id);
+                                    }else if($method === 2){
+                                        echoEditBookmark($bookmark_id);
+                                    }
                                 }
                                 ?>
                             </div>
