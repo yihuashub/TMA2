@@ -59,20 +59,24 @@ if(isset($_POST))
     $repassword = $_POST['repassword'];
     $email = $_POST['email'];
 
-    if(strcmp($password,$repassword) === 0)
-    {
-        if(check_exit($email))
+    if(!empty($firstName) && !empty($lastName) && !empty($password) && !empty($repassword) && !empty($email)){
+        if(strcmp($password,$repassword) === 0)
         {
-            if (pc_validate($email,$firstName,$lastName,$password,$salt)) {
-                setcookie('login', $email . ',' . md5($password. $salt));
-                $message = "You were successful registered!";
-                $register = true;
+            if(check_exit($email))
+            {
+                if (pc_validate($email,$firstName,$lastName,$password,$salt)) {
+                    setcookie('login', $email . ',' . md5($password. $salt));
+                    $message = "You were successful registered!";
+                    $register = true;
+                }
+            }else{
+                $message="The User Already Exist.";
             }
         }else{
-            $message="The User Already Exist.";
+            $message="The passwords do not match.";
         }
     }else{
-        $message="The passwords do not match.";
+     $message="Please enter all info that required.";
     }
 }
 

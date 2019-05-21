@@ -36,22 +36,28 @@ function get_user($email)
 
 if(isset($_POST))
 {
-    $password = $_POST['password'];
-    $email = $_POST['email'];
-    $result = get_user($email);
-
-    if($result)
+    if(!empty($_POST['email']) && !empty($_POST['password']) )
     {
-        $hashPassword = md5($password. $result['salt']);
-        if (strcmp($hashPassword,$result['password']) === 0) {
-            setcookie('login', $email . ',' . $hashPassword);
-            $message = "You were successful login!";
-            $login = true;
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+        $result = get_user($email);
+
+        if($result)
+        {
+            $hashPassword = md5($password. $result['salt']);
+            if (strcmp($hashPassword,$result['password']) === 0) {
+                setcookie('login', $email . ',' . $hashPassword);
+                $message = "You were successful login!";
+                $login = true;
+            }else{
+                $message="Your Password is invalid";
+            }
         }else{
-            $message="Your Password is invalid";
+            $message="The User is not exist";
         }
-    }else{
-        $message="The User is not exist";
+    }
+    else{
+        $message="Your username or password is empty";
     }
 }
 
