@@ -1,9 +1,9 @@
 <?php
 require_once('../config/database.php');
-require_once('../components/auth_user.php');
-require_once('../components/head.php');
-require_once('../components/footer.php');
-require_once('../components/navbar.php');
+require_once('./components/auth_user.php');
+require_once('./components/head.php');
+require_once('./components/footer.php');
+require_once('./components/navbar.php');
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +41,7 @@ echoHead();
 
                                     <div class="list-group">
                                         <?php
-                                        require_once('../components/bookmark.php');
+                                        require_once('./components/bookmark.php');
 
                                         $db = new Database();
                                         $bookmark = new Bookmark($db,null);

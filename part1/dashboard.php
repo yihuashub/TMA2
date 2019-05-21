@@ -6,16 +6,16 @@
  * Time: 4:21 PM
  */
 require_once('../config/database.php');
-require_once('../components/auth_user.php');
+require_once('./components/auth_user.php');
 
 if(!$user){
     $link = './login.php';
     header( "Location: $link" ) ;
 }
 
-require_once('../components/head.php');
-require_once('../components/footer.php');
-require_once('../components/navbar.php');
+require_once('./components/head.php');
+require_once('./components/footer.php');
+require_once('./components/navbar.php');
 
 ?>
 <!DOCTYPE html>
@@ -69,7 +69,7 @@ echoHead();
                             <div class="card-body">
                                 <ul class="list-group">
                                     <?php
-                                    require_once('../components/bookmark.php');
+                                    require_once('./components/bookmark.php');
 
                                     $db = new Database();
                                     $bookmark = new Bookmark($db,$user['id']);
