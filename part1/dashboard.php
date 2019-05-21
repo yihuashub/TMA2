@@ -57,7 +57,7 @@ echoHead();
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Bookmarking List</h6>
                                 <div class="dropdown no-arrow">
-                                    <a href="#" class="btn btn-success btn-icon-split btn-sm">
+                                    <a href="./modify_bookmark.php?method=1" class="btn btn-success btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-plus-circle"></i>
                                         </span>
@@ -77,14 +77,14 @@ echoHead();
                                     $results = $bookmark->get_user_list();
 
                                     if($results){
-                                        foreach ($results as $url) {
+                                        foreach ($results as $item) {
                                             echo '
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a href="'.$url["url"].'" target="_blank">
-                                        '.$url["url"].'
+                                        <a href="'.$item["url"].'" target="_blank">
+                                        '.$item["url"].'
                                             </a>
                                         <span class="badge ">
-                                            <a href="'.$url["url"].'" class="btn btn-primary btn-circle btn-sm">
+                                            <a href="./modify_bookmark.php?bookmark_id='.$item["id"].'&method=2" class="btn btn-primary btn-circle btn-sm">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                             <a href="#" class="btn btn-danger btn-circle btn-sm">
@@ -94,7 +94,7 @@ echoHead();
                                     </li>';
                                         }
                                     }else{
-                                        echo `<p>Sorry the database is empty</p>`;
+                                        echo '<p>Sorry the database is empty</p>';
                                     }
                                     ?>
                                 </ul>
