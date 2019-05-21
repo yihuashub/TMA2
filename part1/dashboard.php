@@ -5,7 +5,7 @@
  * Date: 2019-05-16
  * Time: 4:21 PM
  */
-require_once('../config/database.php');
+require_once('./config/database.php');
 require_once('./components/auth_user.php');
 
 if(!$user){

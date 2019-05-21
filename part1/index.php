@@ -1,5 +1,5 @@
 <?php
-require_once('../config/database.php');
+require_once('./config/database.php');
 require_once('./components/auth_user.php');
 require_once('./components/head.php');
 require_once('./components/footer.php');
