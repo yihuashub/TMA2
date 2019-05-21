@@ -41,7 +41,7 @@ echoHead();
 
                                     <div class="list-group">
                                         <?php
-                                        require_once ('./components/bookmark.php');
+                                        require_once ('../components/bookmark.php');
 
                                         $db = new Database();
                                         $bookmark = new Bookmark($db,null);
@@ -49,31 +49,13 @@ echoHead();
                                         $results = $bookmark->get_top_ten();
 
                                         if($results){
-                                            var_dump($results);
+                                            foreach ($results as $url) {
+                                                echo '<a href="'.$url['url'].'" target="_blank" class="list-group-item list-group-item-action">'.$url['url'].'</a> ';
+                                            }
                                         }else{
                                             echo `<p>Sorry the database is empty</p>`;
                                         }
-
-
                                         ?>
-<!--                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>-->
-<!--                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>-->
-<!--                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur-->
-<!--                                            ac</a>-->
-<!--                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum-->
-<!--                                            at eros</a>-->
-<!--                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>-->
-<!--                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>-->
-<!--                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur-->
-<!--                                            ac</a>-->
-<!--                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum-->
-<!--                                            at eros</a>-->
-<!--                                        <a href="#" class="list-group-item list-group-item-action">yihua.ca</a>-->
-<!--                                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>-->
-<!--                                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur-->
-<!--                                            ac</a>-->
-<!--                                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum-->
-<!--                                            at eros</a>-->
                                     </div>
                                 </div>
                             </div>

@@ -68,39 +68,33 @@ echoHead();
                             <!-- Card Body -->
                             <div class="card-body">
                                 <ul class="list-group">
+                                    <?php
+                                    require_once ('../components/bookmark.php');
+
+                                    $db = new Database();
+                                    $bookmark = new Bookmark($db,$user['id']);
+
+                                    $results = $bookmark->get_user_list();
+
+                                    if($results){
+                                        foreach ($results as $url) {
+                                            echo '
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Dapibus ac facilisis in
+                                        '.$url["url"].'
                                         <span class="badge ">
-                                            <a href="#" class="btn btn-primary btn-circle btn-sm">
+                                            <a href="'.$url["url"].'" class="btn btn-primary btn-circle btn-sm">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                             <a href="#" class="btn btn-danger btn-circle btn-sm">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Dapibus ac facilisis in
-                                        <span class="badge ">
-                                            <a href="#" class="btn btn-primary btn-circle btn-sm">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-circle btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Dapibus ac facilisis in
-                                        <span class="badge ">
-                                            <a href="#" class="btn btn-primary btn-circle btn-sm">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-circle btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </span>
-                                    </li>
+                                    </li>';
+                                        }
+                                    }else{
+                                        echo `<p>Sorry the database is empty</p>`;
+                                    }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
@@ -114,10 +108,9 @@ echoHead();
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings
-                                                (Monthly)
+                                                You are total Bookmakers are
                                             </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $bookmark->get_user_total_count()?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>

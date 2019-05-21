@@ -2,7 +2,7 @@
 
 function echoNavbar($user)
 {
-    $username = 'user';
+    $username = 'Please Login';
     if($user)
     {
         $username = $user['firstname'].' '.$user['lastname'];
