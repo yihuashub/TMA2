@@ -40,7 +40,7 @@ function echoAddBookmark(){
             <div class="form-group row">
                 <label for="url" class="col-sm-2 col-form-label">Website Ur;</label>
                 <div class="col-sm-10">
-                    <input id="url" onchange="checkUrlFormat()"  type="text" class="form-control"  placeholder="Url"  required>
+                    <input id="url" name="url" onchange="checkUrlFormat()"  type="text" class="form-control"  placeholder="Url"  required>
                     <div id="message"></div>
                 </div>
             </div>
@@ -184,7 +184,7 @@ echoLogoutModal();
 ?>
 
 <script>
-
+    var urlFormat = false;
 
     function isURL(str) {
         var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
@@ -199,8 +199,9 @@ echoLogoutModal();
 
     function checkUrlFormat() {
         var inpObj = document.getElementById("url").value;
+        urlFormat = isURL(inpObj);
 
-        if (!isURL(inpObj)) {
+        if (!urlFormat) {
             document.getElementById("message").innerHTML = "Input NOT OK";
             document.getElementById("message").className = 'invalid-feedback';
             document.getElementById("url").className = 'form-control is-invalid';
@@ -212,10 +213,13 @@ echoLogoutModal();
     }
 
     function proceed () {
-        var form = document.getElementById('url-form');
-        form.setAttribute('method', 'post');
-        form.setAttribute('action', './processing_modify.php');
-        form.submit();
+
+        if(urlFormat){
+            var form = document.getElementById('url-form');
+            form.setAttribute('method', 'post');
+            form.setAttribute('action', './processing_modify.php');
+            form.submit();
+        }
     }
 </script>
 <!-- Bootstrap core JavaScript-->
