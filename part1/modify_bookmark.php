@@ -38,9 +38,10 @@ function echoAddBookmark(){
     echo '
          <form>
             <div class="form-group row">
-                <label for="url" class="col-sm-2 col-form-label">Website Url</label>
+                <label for="url" class="col-sm-2 col-form-label">Website Ur;</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="url" placeholder="Url">
+                    <input id="url" onchange="checkUrlFormat()"  type="text" class="form-control"  placeholder="Url"  required>
+                    <div id="message"></div>
                 </div>
             </div>
             <div class="form-group row fa-pull-right">
@@ -58,9 +59,10 @@ function echoEditBookmark($id,$user_id){
         echo '
          <form>
             <div class="form-group row">
-                <label for="url" class="col-sm-2 col-form-label">Website Url</label>
+                <label for="url" class="col-sm-2 col-form-label">Website Ur;</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="url" placeholder="Url" value="'.$result['url'].'">
+                    <input id="url" onchange="checkUrlFormat()"  type="text" class="form-control"  placeholder="Url"  required>
+                    <div id="message"></div>
                 </div>
             </div>
               <input type="hidden" id="bookmark_id" name="bookmark_id" value="'.$id.'"> 
@@ -186,15 +188,28 @@ echoLogoutModal();
 
     function isURL(str) {
         var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
             '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
             '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
             '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
             '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-        return pattern.test(str);
+        return !!pattern.test(str);
     }
 
 
+    function checkUrlFormat() {
+        var inpObj = document.getElementById("url").value;
+
+        if (!isURL(inpObj)) {
+            document.getElementById("message").innerHTML = "Input NOT OK";
+            document.getElementById("message").className = 'invalid-feedback';
+            document.getElementById("url").className = 'form-control is-invalid';
+        } else {
+            document.getElementById("message").innerHTML = "Input OK";
+            document.getElementById("message").className = 'valid-feedback';
+            document.getElementById("url").className = 'form-control is-valid';
+        }
+    }
 </script>
 <!-- Bootstrap core JavaScript-->
 <script src="../shared/vendor/jquery/jquery.min.js"></script>
