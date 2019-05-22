@@ -181,6 +181,21 @@ echoHead();
 echoLogoutModal();
 ?>
 
+<script>
+
+
+    function isURL(str) {
+        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+            '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+        return pattern.test(str);
+    }
+
+
+</script>
 <!-- Bootstrap core JavaScript-->
 <script src="../shared/vendor/jquery/jquery.min.js"></script>
 <script src="../shared/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -191,12 +206,6 @@ echoLogoutModal();
 <!-- Custom scripts for all pages-->
 <script src="../shared/js/sb-admin-2.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="../shared/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="../shared/js/demo/chart-area-demo.js"></script>
-<script src="../shared/js/demo/chart-pie-demo.js"></script>
 
 </body>
 </html>
