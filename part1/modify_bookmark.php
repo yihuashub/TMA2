@@ -36,7 +36,7 @@ function check_exit($id,$user_id)
 
 function echoAddBookmark(){
     echo '
-         <form>
+         <form id="url-form">
             <div class="form-group row">
                 <label for="url" class="col-sm-2 col-form-label">Website Ur;</label>
                 <div class="col-sm-10">
@@ -46,7 +46,7 @@ function echoAddBookmark(){
             </div>
             <div class="form-group row fa-pull-right">
                 <div class="col-sm-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" onclick="proceed();" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </form>';
@@ -57,7 +57,7 @@ function echoEditBookmark($id,$user_id){
 
     if($result){
         echo '
-         <form>
+         <form id="url-form">
             <div class="form-group row">
                 <label for="url" class="col-sm-2 col-form-label">Website Ur;</label>
                 <div class="col-sm-10">
@@ -68,7 +68,7 @@ function echoEditBookmark($id,$user_id){
               <input type="hidden" id="bookmark_id" name="bookmark_id" value="'.$id.'"> 
             <div class="form-group row fa-pull-right">
                 <div class="col-sm-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" onclick="proceed();" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </form>';
@@ -209,6 +209,13 @@ echoLogoutModal();
             document.getElementById("message").className = 'valid-feedback';
             document.getElementById("url").className = 'form-control is-valid';
         }
+    }
+
+    function proceed () {
+        var form = document.getElementById('url-form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', './processing_modify.php');
+        form.submit();
     }
 </script>
 <!-- Bootstrap core JavaScript-->
