@@ -34,7 +34,6 @@ function insert_db($url,$user_id)
 
     if ($result === TRUE)
     {
-        $message = $url.' was successful insert!' ;
         return true;
     }
     else
@@ -53,7 +52,12 @@ if(isset($_POST))
     {
         $url =  $_POST['url'];
         if($user){
-            insert_db($url,$user['id']);
+            $status = insert_db($url,$user['id']);
+            if($status){
+                $message =$url.' was successful insert!' ;
+            }else{
+                $message =$url.' was not insert.' ;
+            }
         }
     }
 }
