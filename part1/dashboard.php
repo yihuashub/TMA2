@@ -87,7 +87,7 @@ echoHead();
                                             <a href="./modify_bookmark.php?bookmark_id='.$item["id"].'&method=2" class="btn btn-primary btn-circle btn-sm">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a href="#" class="btn btn-danger btn-circle btn-sm">
+                                            <a href="./delete_bookmark.php?bookmark_id='.$item["id"].'" class="btn btn-danger btn-circle btn-sm">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </span>

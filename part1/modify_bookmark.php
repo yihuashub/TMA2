@@ -18,7 +18,7 @@ require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
 
-function check_exit($id,$user_id)
+function check_exist($id,$user_id)
 {
     $db = new Database();
 
@@ -53,7 +53,7 @@ function echoAddBookmark(){
 }
 
 function echoEditBookmark($id,$user_id){
-    $result = check_exit($id,$user_id);
+    $result = check_exist($id,$user_id);
 
     if($result){
         echo '
