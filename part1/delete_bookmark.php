@@ -61,9 +61,9 @@ if(isset($_GET)) {
             if($exist){
                 $status = delete_db($bookmark_id);
                 if ($status) {
-                    $message = $url . ' was successful delete!';
+                    $message =  '  successful delete!';
                 } else {
-                    $message = $url . ' was not delete.';
+                    $message =  '  not delete.';
                 }
             }else{
                 $message ='Error:403';
