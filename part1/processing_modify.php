@@ -46,7 +46,7 @@ function update_db($url,$url_id)
 {
     $db = new Database();
 
-    $sql = "UPDATE `bookmarks` SET `url` = '$url' WHERE `bookmarks`.`id` = '$url_id'  ";
+    $sql = "UPDATE `bookmarks` SET `url` = '$url' WHERE `id` = '$url_id' ";
     $result = $db->query($sql);
 
     if ($result === TRUE)
@@ -71,6 +71,7 @@ if(isset($_POST)) {
 
             if (!empty($_POST['bookmark_id'])) {
                 $bookmark_id = $_POST['bookmark_id'];
+                echo $bookmark_id;
                 $status = update_db($url, $bookmark_id);
                 if ($status) {
                     $message = $url . ' was successful update!';

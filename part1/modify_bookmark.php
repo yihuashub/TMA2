@@ -61,7 +61,7 @@ function echoEditBookmark($id,$user_id){
             <div class="form-group row">
                 <label for="url" class="col-sm-2 col-form-label">Website Ur;</label>
                 <div class="col-sm-10">
-                    <input id="url" onchange="checkUrlFormat()"  type="text" class="form-control"  placeholder="Url" value='.$result['url'].'"" required>
+                    <input id="url" onchange="checkUrlFormat()"  type="text" class="form-control"  placeholder="Url" value="'.$result['url'].'" required>
                     <div id="message"></div>
                 </div>
             </div>
