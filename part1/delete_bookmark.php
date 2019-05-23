@@ -59,7 +59,7 @@ if(isset($_GET)) {
             $bookmark_id = $_GET['bookmark_id'];
             $exist = check_exist($bookmark_id,$user['id']);
             if($exist){
-                $bookmark_id = $_POST['bookmark_id'];
+                $bookmark_id = $_GET['bookmark_id'];
                 $status = delete_db($bookmark_id);
                 if ($status) {
                     $message = $url . ' was successful delete!';
