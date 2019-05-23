@@ -42,21 +42,49 @@ function insert_db($url,$user_id)
     }
 }
 
+function update_db($url,$url_id)
+{
+    $db = new Database();
+
+    $sql = "UPDATE `bookmarks` SET `url` = '$url' WHERE `bookmarks`.`id` = '$url_id'  ";
+    $result = $db->query($sql);
+
+    if ($result === TRUE)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 $url = null;
 $status = false;
+$bookmark_id = null;
 $message = '';
 
-if(isset($_POST))
-{
-    if(!empty($_POST['url'])  )
-    {
-        $url =  $_POST['url'];
-        if($user){
-            $status = insert_db($url,$user['id']);
-            if($status){
-                $message =$url.' was successful insert!' ;
+if(isset($_POST)) {
+    if ($user) {
+        if (!empty($_POST['url'])) {
+            $url = $_POST['url'];
+
+            if (!empty($_POST['bookmark_id'])) {
+                $bookmark_id = $_POST['bookmark_id'];
+                $status = update_db($url, $bookmark_id);
+                if ($status) {
+                    $message = $url . ' was successful update!';
+                } else {
+                    $message = $url . ' was not update.';
+                }
+
             }else{
-                $message =$url.' was not insert.' ;
+                $status = insert_db($url, $user['id']);
+                if ($status) {
+                    $message = $url . ' was successful insert!';
+                } else {
+                    $message = $url . ' was not insert.';
+                }
             }
         }
     }
