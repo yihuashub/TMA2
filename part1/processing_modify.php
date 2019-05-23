@@ -65,6 +65,7 @@ $bookmark_id = null;
 $message = '';
 
 if(isset($_POST)) {
+    var_dump($_POST);
     if ($user) {
         if (!empty($_POST['url'])) {
             $url = $_POST['url'];
