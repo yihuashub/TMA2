@@ -65,14 +65,12 @@ $bookmark_id = null;
 $message = '';
 
 if(isset($_POST)) {
-    var_dump($_POST);
     if ($user) {
         if (!empty($_POST['url'])) {
             $url = $_POST['url'];
 
             if (!empty($_POST['bookmark_id'])) {
                 $bookmark_id = $_POST['bookmark_id'];
-                echo $bookmark_id;
                 $status = update_db($url, $bookmark_id);
                 if ($status) {
                     $message = $url . ' was successful update!';
