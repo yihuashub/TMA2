@@ -5,6 +5,12 @@ ini_set("html_errors", 1);
 error_reporting(E_ALL);
 
 require_once('./config/database.php');
+require_once('./components/auth_user.php');
+
+if(!$user){
+    $link = './login.php';
+    header( "Location: $link" ) ;
+}
 require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
@@ -19,26 +25,36 @@ $password = "";
 $repassword = "";
 $email = "";
 
-function get_user($email)
+function insert_db($url,$user_id)
 {
     $db = new Database();
 
-    $sql = "SELECT * FROM `users` WHERE `email` = '$email' ";
+    $sql = "INSERT INTO `bookmarks` (`id`, `url`, `user_id`) VALUES (NULL, '$url', '$user_id'); ";
     $result = $db->query($sql);
 
-    if ($result && mysqli_num_rows($result) > 0) {
-        return mysqli_fetch_assoc($result);
+    if ($result === TRUE)
+    {
+        $message = $url.' was successful insert!' ;
+        return true;
     }
-    else{
+    else
+    {
         return false;
     }
 }
+
+$url = null;
+$status = false;
+$message = '';
 
 if(isset($_POST))
 {
     if(!empty($_POST['url'])  )
     {
-        echo $_POST['url'];
+        $url =  $_POST['url'];
+        if($user){
+            insert_db($url,$user['id']);
+        }
     }
 }
 
@@ -71,7 +87,7 @@ echoHead();
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <?php
-                if($login)
+                if($status)
                 {
                     echo '
                 <div class="text-center">
