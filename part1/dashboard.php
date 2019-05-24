@@ -110,38 +110,14 @@ echoHead();
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                You are total Bookmakers are
+                                                The total Bookmakers that you have are
                                             </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $bookmark->get_user_total_count()?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php count($results)?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mb-4">
-                            <div class="card bg-warning text-white shadow">
-                                <div class="card-body">
-                                    Warning
-                                    <div class="text-white-50 small">#f6c23e</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mb-4">
-                            <div class="card bg-danger text-white shadow">
-                                <div class="card-body">
-                                    Danger
-                                    <div class="text-white-50 small">#e74a3b</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mb-4">
-                            <div class="card bg-secondary text-white shadow">
-                                <div class="card-body">
-                                    Secondary
-                                    <div class="text-white-50 small">#858796</div>
                                 </div>
                             </div>
                         </div>

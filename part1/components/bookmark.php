@@ -4,14 +4,12 @@
 class Bookmark
 {
     private $db;
-    private $userId, $total;
+    private $userId;
 
     public function __construct($db, $userId)
     {
         $this->db = $db;
         $this->userId = $userId;
-        $this->total = 0;
-
     }
 
     public function get_top_ten()
@@ -42,7 +40,6 @@ class Bookmark
 
             if ($result && mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    $this->total++;
                     array_push($result_array, $row);
                 }
                 return $result_array;
@@ -54,7 +51,4 @@ class Bookmark
         }
     }
 
-    public function get_user_total_count(){
-        return $this->total;
-    }
 }
