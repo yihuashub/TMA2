@@ -94,7 +94,7 @@ echoHead();
                                     </li>';
                                         }
                                     }else{
-                                        echo '<p>Sorry the database is empty</p>';
+                                        echo '<p>Sorry the data is empty</p>';
                                     }
                                     ?>
                                 </ul>

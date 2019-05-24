@@ -50,10 +50,14 @@ echoHead();
 
                                         if($results){
                                             foreach ($results as $url) {
-                                                echo '<a href="'.$url['url'].'" target="_blank" class="list-group-item list-group-item-action">'.$url['url'].'</a> ';
+                                                echo "
+                                                <a href=\"".$url['url']."\" target=\"_blank\" class=\"list-group-item list-group-item-action d-flex justify-content-between align-items-center\">
+                                                    ".$url['url']."
+                                                <span class=\"badge badge-primary badge-pill\">".$url['counts']."</span>
+                                                </a>";
                                             }
                                         }else{
-                                            echo `<p>Sorry the database is empty</p>`;
+                                            echo `<p>Sorry the data is empty</p>`;
                                         }
                                         ?>
                                     </div>
