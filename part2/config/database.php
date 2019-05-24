@@ -1,8 +1,8 @@
 <?php
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'sammy');
-define('DB_PASSWORD', 'comp466testonly');
-define('DB_DATABASE', 'bookmarking');
+define('DB_PASSWORD', 'password');
+define('DB_DATABASE', 'comp466testonly');
 
 class Database {
     private $link;
