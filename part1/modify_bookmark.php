@@ -196,11 +196,11 @@ echoLogoutModal();
         urlFormat = isURL(inpObj);
 
         if (!urlFormat) {
-            document.getElementById("message").innerHTML = "The URL format is correct.";
+            document.getElementById("message").innerHTML = "The URL format is NOT correct.";
             document.getElementById("message").className = 'invalid-feedback';
             document.getElementById("url").className = 'form-control is-invalid';
         } else {
-            document.getElementById("message").innerHTML = "The URL format is NOT correct.";
+            document.getElementById("message").innerHTML = "The URL format is correct.";
             document.getElementById("message").className = 'valid-feedback';
             document.getElementById("url").className = 'form-control is-valid';
         }

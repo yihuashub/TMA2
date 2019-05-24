@@ -128,13 +128,6 @@ echoLogoutModal();
 <!-- Custom scripts for all pages-->
 <script src="../shared/js/sb-admin-2.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="../shared/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="../shared/js/demo/chart-area-demo.js"></script>
-<script src="../shared/js/demo/chart-pie-demo.js"></script>
-
 </body>
 
 </html>
