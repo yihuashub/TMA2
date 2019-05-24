@@ -15,7 +15,7 @@ function echoNavbar($user)
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">The World Best Bookmarking <sup>Beta 1</sup></div>
+                    <div class="sidebar-brand-text mx-3">The World Best Bookmarking <sup>Beta</sup></div>
                 </a>
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">

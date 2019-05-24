@@ -11,7 +11,7 @@ function echoHead()
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Super Bookmark</title>
+    <title>The World Best Bookmarking</title>
 
     <!-- Custom fonts for this template-->
     <link href="../shared/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
