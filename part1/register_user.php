@@ -5,6 +5,12 @@ ini_set("html_errors", 1);
 error_reporting(E_ALL);
 
 require_once('./config/database.php');
+require_once('./components/auth_user.php');
+
+if($user){
+    $link = './dashboard.php';
+    header( "Location: $link" ) ;
+}
 require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
@@ -34,7 +40,7 @@ function check_exit($email)
     }
 }
 
-function pc_validate($email,$firstName,$lastName,$password,$salt)
+function insert_db($email,$firstName,$lastName,$password,$salt)
 {
     $db = new Database();
     $hashPassword = md5($password. $salt);
@@ -64,10 +70,12 @@ if(isset($_POST))
         {
             if(check_exit($email))
             {
-                if (pc_validate($email,$firstName,$lastName,$password,$salt)) {
+                if (insert_db($email,$firstName,$lastName,$password,$salt)) {
                     setcookie('login', $email . ',' . md5($password. $salt));
                     $message = "You were successful registered!";
                     $register = true;
+                }else{
+                    $message = "You can not register based on your info, please make some changes.";
                 }
             }else{
                 $message="The User Already Exist.";

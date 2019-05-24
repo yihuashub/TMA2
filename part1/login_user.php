@@ -5,6 +5,12 @@ ini_set("html_errors", 1);
 error_reporting(E_ALL);
 
 require_once('./config/database.php');
+require_once('./components/auth_user.php');
+
+if($user){
+    $link = './dashboard.php';
+    header( "Location: $link" ) ;
+}
 require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
