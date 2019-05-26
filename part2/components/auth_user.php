@@ -4,9 +4,8 @@ ini_set("track_errors", 1);
 ini_set("html_errors", 1);
 error_reporting(E_ALL);
 
-function get_user($email)
+function get_user($db,$email)
 {
-    $db = new Database();
 
     $sql = "SELECT * FROM `users` WHERE `email` = '$email' ";
     $result = $db->query($sql);
@@ -18,16 +17,19 @@ function get_user($email)
         return false;
     }
 }
-
+/// end of functions
+///
+/// start global  variable
+$db = new Database();
 $user = null;
 $login = '';
+
 if (!empty($_COOKIE['login'])) {
     $login = $_COOKIE['login'];
 }
 if ($login) {
-    $db = new Database();
     list($c_email, $cookie_hash) = explode(',', $_COOKIE['login']);
-    $result = get_user($c_email);
+    $result = get_user($db,$c_email);
 
     if($result){
         if (strcmp($result['password'],$cookie_hash) === 0) {

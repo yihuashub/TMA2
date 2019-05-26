@@ -16,8 +16,9 @@ require_once('./components/footer.php');
 require_once('./components/navbar.php');
 require_once('./components/sidebar.php');
 
+$db = new Database();
 // Class
-require_once('./components/EML_parsing.php');
+require_once('./classes/EML_Processor.php');
 
 
 $salt = time();
@@ -110,7 +111,7 @@ echoHead();
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <?php echoSidebar(); ?>
+    <?php echoSidebar($db,$user,'modify_course'); ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -127,7 +128,7 @@ echoHead();
                 if($eml)
                 {
 
-                    $parseEML = new EML_parsing(new Database(),$eml);
+                    $parseEML = new EML_Processor(new Database(),$eml);
                     $parseEML->parsing();
                     echo "233 ".$parseEML->get_course_name();
                     //$xml = simplexml_load_string($eml);

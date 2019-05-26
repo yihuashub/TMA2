@@ -6,26 +6,119 @@
         <discipline>Computer Science</discipline>
         <introduction>This is a free dome version for comp 466</introduction>
     </overall>
-    <unit name="1">
-        <section>
-            <h1>QWZ5671</h1>
-            <p>39.95</p>
-            <p>
-                In this part of the assignment, you are required to develop a small-scale online learning management system that can be used to deliver online courses to learners.
-            </p>
-            <size description="Large">
-                <color_swatch image="red_cardigan.jpg">Red</color_swatch>
-                <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>
-            </size>
+    <lesson belongs="1">
+        <section title="Common Javascript Elements and Concepts">
+            <title1>
+                There are a few main objects and methods that would be excellent to understand as an introduction to Javascript. Before listing some of them, it should be noted that Javascript behaves similarly to python in that it does not explicitly define an element's/object's type. You do not need to specifiy the parameter type (ie. function(nameOfParam){} rather than function(int name){}) or need to specifying one for a variable. You can simply give the type 'var' for every variable you create (similar to the capabilities of C#). With that in mind, here is a list of some common Javascript knowledge:
+            </title1>
+            <strong term="Document">
+                The 'document' object represents the HTML5 document object. This gives you access to all of the elements found in the file. These are known as the Document Object Model (DOM) which we will later discuss how to get elements and attributes for these objects.
+            </strong>
+            <text term="Methods of DOM">
+                Similar to the concept of a class object, DOM objects have attributes and methods which can be called. For example if we want to write a line to the document, the method 'writeln()' can be called.
+            </text>
+            <code>document.writeln("Hello World!")</code>
+            <definition term="Attributes of DOM">
+                Objects have attributes that can be set or simply just to get the value of an attribute. You can call the method '.setattribute(...)' or to modify/get CSS attributes you can directly set them. For example if you want to hide an element you can do the following
+            </definition>
+            <code>myClass.style.display = 'none';</code>
+            <definition term="Semi-colon">
+                The semi colon is not required but it is greatly advised to reduce any bugs that may occur
+            </definition>
+            <definition term="Case Sensitive">
+                Javascript is case sensitive so be sure to have the correct casing!
+            </definition>
+            <definition term="Quotes">
+                You can mix and match single quotes ' with double quotes " and they should work the same in any case. What is useful is when you want to display either single/ double quotes to the user. You should then nest the quotes you wish to show in the opposing quotes.
+            </definition>
+            <definition term="Window">
+                The window object can be thought of as the browser window. You can invoke an alert dialog (a), create a function that will be called when the window loads (b), and even get a user's input from a window prompt (c). We will discuss this syntax later in the tutorial.
+            </definition>
+            <code>(a) window.alert("Warning!")</code>
+            <code>(b) window.onload() = function() {};</code>
+            <code>(c) window.prompt("Please enter a number");</code>
+            <definition term="Concatinating Vs. Adding">
+                The '+' symbol can be used to concatinate strings as well as add numbers. You must be careful with this and not confuse concatinating string with adding numbers. Look at the following as an example, where y = 5.
+                <code>y + 2 =" + y + 2</code>
+                <code>Expected: "y + 2 = 7"</code>
+                <code>Result: "y + 2 = 52"</code>
+                This is the wrong result since we mixed string with integer values. We need to specify exactly that we want to add two integers by grouping them within brackets. This will add (y + 2) as ints then concat them with the "y + 2 =" string.
+                <code>y + 2 =" + (y + 2)</code>
+                <code>Result: "y + 2 = 7"</code>
+            </definition>
+            <definition term="Strict Equals/Not Equals">
+                Typically it is good enough to compare two objects/values with a == a or a != b. But in Javascript the following condition would also return true, "72" == 72, even though one is a string and another is an integer. To strictly compare you must use '===' or '!=='
+            </definition>
+            <code>"72" === 72 will result in false</code>
+            <definition term="If Condition">
+                You can use if, else if, and else as you would with any other programming language.
+            </definition>
+            <code>if(condition){}else if(condition){} else{};</code>
+            <definition term="While Loops">
+                You can loop until a condition is met with
+            </definition>
+            <code>while(condition){};</code>
+            <definition term="For Loops">
+                A for loop allows you to iterate through an indexed array or list.
+            </definition>
+            <code>for(...){}</code>
+            <definition term="Increment, Decrement">
+                For integers, you can easilly increment or decrement them with the following
+            </definition>
+            <image src="img/fig7-13_p239.png">
+                Figure 2. Javascript Increment &amp; Decrement
+            </image>
         </section>
-    </unit>
-    <quiz name="1">
+    </lesson>
+    <quiz belongs="1">
         <question>
-            <text>what is comp 446</text>
-            <type>single-select</type>
-            <option>
-                1
-            </option>
+            <questionText>What is the full name of HTML?</questionText>
+            <type>text</type>
+            <answer>hyperText markup language</answer>
+        </question>
+        <question>
+            <questionText>Which one is correct statement?</questionText>
+            <type>radio</type>
+            <answer>1</answer>
+            <option>HTTPS is stand by Hypertext Transfer Protocol Second Generation</option>
+            <option>HTTPS is the standard for transferring encrypted data on the web.</option>
+        </question>
+        <question>
+            <questionText>Which one is NOT correct statement?</questionText>
+            <type>radio</type>
+            <answer>3</answer>
+            <option>jQuery (jQuery.org) is currently the most popular of hundreds of JavaScript libraries. </option>
+            <option>jQuery simplifies JavaScript programming by making it easier to manipulate a web page’s elements and interact with servers in a portable manner across various web browsers. </option>
+            <option>jQuery is written by Java 8.</option>
+            <option>It provides a library of custom graphical user interface (GUI) controls (beyond the basic GUI controls provided by HTML5) that can be used to enhance the look and feel of your web pages.</option>
+        </question>
+        <question>
+            <questionText>What is the full name of XML?</questionText>
+            <type>text</type>
+            <answer>extensible markup language</answer>
+        </question>
+        <question>
+            <questionText>The flowing HTML 5 elements which is tables element?</questionText>
+            <type>checkbox</type>
+            <answer>1</answer>
+            <answer>3</answer>
+
+            <option>td</option>
+            <option>li</option>
+            <option>lu</option>
+            <option>tr</option>
+        </question>
+        <question>
+            <questionText>The email input type must has '@' in the text.</questionText>
+            <type>radio</type>
+            <answer>1</answer>
+            <option>true</option>
+            <option>false</option>
+        </question>
+        <question>
+            <questionText>HTML heading( h1 through  h ?), what is it?</questionText>
+            <type>number</type>
+            <answer>6</answer>
         </question>
     </quiz>
 </course>

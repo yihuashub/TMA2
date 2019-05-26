@@ -53,7 +53,7 @@ if(isset($_POST))
                 $message="Your Password is invalid";
             }
         }else{
-            $message="The User is not exist";
+            $message="The User does not exist";
         }
     }
     else{

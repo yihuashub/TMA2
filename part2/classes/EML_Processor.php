@@ -1,7 +1,7 @@
 <?php
 
 
-class EML_parsing
+class EML_Processor
 {
     private $db;
     private $eml;
@@ -21,22 +21,24 @@ class EML_parsing
     }
 
 
-    private function save_row($key_word,$sub_eml)
+    private function save_row($key_word,$key_type,$sub_eml)
     {
         $sub_eml = $this->db->mysqli_real_escape_string($sub_eml);
-        $sql = "INSERT INTO `$this->course_name` (id, key_word, eml) VALUES (NULL, '$key_word', '$sub_eml')";
+        $sql = "INSERT INTO `$this->course_name` (id, key_word,key_type,eml) VALUES (NULL, '$key_word','$key_type', '$sub_eml')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
+            echo $this->db->error();
             return false;
         }
     }
 
     private function create_table($course_name){
-        $sql = "CREATE TABLE `learning`.`$course_name` ( `id` INT(6) NOT NULL AUTO_INCREMENT , `key_word` VARCHAR(30) NOT NULL , `eml` VARCHAR(500) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+        $sql = "CREATE TABLE `learning`.`$course_name` ( `id` INT(6) NOT NULL AUTO_INCREMENT , `key_word` VARCHAR(30) NOT NULL ,`key_type` VARCHAR(30) NOT NULL , `eml` VARCHAR(55555) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
+            echo $this->db->error();
             return false;
         }
     }
@@ -46,6 +48,7 @@ class EML_parsing
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
+            echo $this->db->error();
             return false;
         }
     }
@@ -72,16 +75,20 @@ class EML_parsing
             }else{
                 echo "failed delete.";
             }
-
         }
 
         echo "Creating this table";
         $this->create_table($this->course_name);
 
         foreach ($this->xml_element->children() as $child) {
-            $this->save_row($child->getName(),$child->asXML());
+            echo "working on ".$child->getName();
+            if($this->save_row($child->getName().'_'.$child->attributes(),$child->getName(),$child->asXML())){
+                echo " is success!<br>";
+            }else{
+                echo " failed <br>";
+            }
 
-            echo $child->getName()."<br>";
+//            echo $child->getName()."<br>";
 //
 //            if (strcmp($child->getName(), 'overall') === 0) {
 //                echo $child->asXML();

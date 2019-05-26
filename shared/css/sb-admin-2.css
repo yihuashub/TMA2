@@ -11135,6 +11135,7 @@ a:focus {
   text-decoration: none;
   border-radius: 0.35rem;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-item:hover,

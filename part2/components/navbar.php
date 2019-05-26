@@ -3,23 +3,27 @@
 function echoNavbar($user)
 {
     $username = 'Please Login';
+    $user_role = '';
     if($user)
     {
         $username = $user['firstname'].' '.$user['lastname'];
+        if($user['role'] === '0'){
+            $user_role = 'a students';
+        }else{
+            $user_role = 'an instructor';
+        }
     }
     echo '
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./">
-                    <div class="sidebar-brand-icon rotate-n-15">
-                        <i class="fas fa-laugh-wink"></i>
-                    </div>
-                    <div class="sidebar-brand-text mx-3">The World Best Bookmarking <sup>Beta</sup></div>
-                </a>
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
-
+            <!-- Nav Item - Messages -->
+            <li class="nav-item dropdown no-arrow mx-1">
+                 <a class="nav-link dropdown-toggle" href="#" id="" role="button">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"> You have login as '.$user_role.'</span>
+                </a>
+            </li>
                     <div class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->
