@@ -83,10 +83,6 @@ echoHead();
                 <!-- Main Content -->
                 <div id="content">
 
-                    <?php
-                    echoNavbar(null)
-                    ?>
-
                     <!-- Begin Page Content -->
             <div class="container-fluid">
                 <?php

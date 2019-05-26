@@ -16,6 +16,7 @@ if(!$user){
 require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
+require_once('./components/sidebar.php');
 
 ?>
 <!DOCTYPE html>
@@ -30,15 +31,14 @@ echoHead();
 <!-- Page Wrapper -->
 <div id="wrapper">
 
+    <?php echoSidebar(); ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
         <div id="content">
 
-            <?php
-            echoNavbar($user);
-            ?>
+            <?php echoNavbar($user); ?>
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
@@ -68,7 +68,7 @@ echoHead();
                             <div class="card-body">
                                 <ul class="list-group">
                                     <?php
-                                    require_once('./components/bookmark.php');
+                                    require_once('./components/EML_parsing.php');
 
                                     $db = new Database();
                                     $bookmark = new Bookmark($db,$user['id']);

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<course code="COMP466">
+    <overall>
+        <title>Advanced Technologies for Web-Based Systems</title>
+        <instructor>Dr.Wang</instructor>
+        <discipline>Computer Science</discipline>
+        <introduction>This is a free dome version for comp 466</introduction>
+    </overall>
+    <unit name="1">
+        <section>
+            <h1>QWZ5671</h1>
+            <p>39.95</p>
+            <p>
+                In this part of the assignment, you are required to develop a small-scale online learning management system that can be used to deliver online courses to learners.
+            </p>
+            <size description="Large">
+                <color_swatch image="red_cardigan.jpg">Red</color_swatch>
+                <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>
+            </size>
+        </section>
+    </unit>
+    <quiz name="1">
+        <question>
+            <text>what is comp 446</text>
+            <type>single-select</type>
+            <option>
+                1
+            </option>
+        </question>
+    </quiz>
+</course>

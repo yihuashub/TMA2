@@ -14,6 +14,11 @@ if(!$user){
 require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
+require_once('./components/sidebar.php');
+
+// Class
+require_once('./components/EML_parsing.php');
+
 
 $salt = time();
 $login = false;
@@ -59,33 +64,33 @@ function update_db($url,$url_id)
     }
 }
 
-$url = null;
+$eml = null;
 $status = false;
 $bookmark_id = null;
 $message = '';
 
 if(isset($_POST)) {
     if ($user) {
-        if (!empty($_POST['url'])) {
-            $url = $_POST['url'];
+        if (!empty($_POST['eml'])) {
+            $eml = $_POST['eml'];
 
-            if (!empty($_POST['bookmark_id'])) {
-                $bookmark_id = $_POST['bookmark_id'];
-                $status = update_db($url, $bookmark_id);
-                if ($status) {
-                    $message = $url . ' was successful update!';
-                } else {
-                    $message = $url . ' was not update.';
-                }
-
-            }else{
-                $status = insert_db($url, $user['id']);
-                if ($status) {
-                    $message = $url . ' was successful insert!';
-                } else {
-                    $message = $url . ' was not insert.';
-                }
-            }
+//            if (!empty($_POST['bookmark_id'])) {
+//                $bookmark_id = $_POST['bookmark_id'];
+//                $status = update_db($url, $bookmark_id);
+//                if ($status) {
+//                    $message = $url . ' was successful update!';
+//                } else {
+//                    $message = $url . ' was not update.';
+//                }
+//
+//            }else{
+//                $status = insert_db($url, $user['id']);
+//                if ($status) {
+//                    $message = $url . ' was successful insert!';
+//                } else {
+//                    $message = $url . ' was not insert.';
+//                }
+//            }
         }
     }
 }
@@ -105,7 +110,7 @@ echoHead();
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-
+    <?php echoSidebar(); ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -119,8 +124,24 @@ echoHead();
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <?php
-                if($status)
+                if($eml)
                 {
+
+                    $parseEML = new EML_parsing(new Database(),$eml);
+                    $parseEML->parsing();
+                    echo "233 ".$parseEML->get_course_name();
+                    //$xml = simplexml_load_string($eml);
+
+//                    $sxe=new SimpleXMLElement($eml);
+//                    echo $sxe->getName() . "<br>";
+//
+//                    foreach ($sxe->children() as $child)
+//                    {
+//                        echo $child->getName() . "<br>";
+//                        if(strcmp($child->getName(),'overall') === 0){
+//                            echo $child->asXML();
+//                        }
+//                    }
                     echo '
                 <div class="text-center">
                     <i class="fa fa-thumbs-up" style="font-size:48px;color:green"></i>

@@ -17,6 +17,7 @@ if(!$user){
 require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
+require_once('./components/sidebar.php');
 
 function check_exist($id,$user_id)
 {
@@ -36,17 +37,14 @@ function check_exist($id,$user_id)
 
 function echoAddBookmark(){
     echo '
-         <form id="url-form">
+        <form id="eml-form" method="post" action="processing_modify.php">
             <div class="form-group row">
-                <label for="url" class="col-sm-2 col-form-label">Website Ur;</label>
-                <div class="col-sm-10">
-                    <input id="url" name="url" onchange="checkUrlFormat()"  type="text" class="form-control"  placeholder="Url"  required>
-                    <div id="message"></div>
-                </div>
+                <label for="eml"  class="col-sm-2 col-form-label">Please enter EML here</label>
+                <textarea class="form-control" id="eml" name="eml" rows="30"></textarea>
             </div>
             <div class="form-group row fa-pull-right">
                 <div class="col-sm-12">
-                    <button type="button" onclick="proceed();" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </form>';
@@ -57,7 +55,7 @@ function echoEditBookmark($id,$user_id){
 
     if($result){
         echo '
-         <form id="url-form">
+        <form id="url-form" method="post" action="register_user.php">
             <div class="form-group row">
                 <label for="url" class="col-sm-2 col-form-label">Website Ur;</label>
                 <div class="col-sm-10">
@@ -68,7 +66,7 @@ function echoEditBookmark($id,$user_id){
               <input type="hidden" id="bookmark_id" name="bookmark_id" value="'.$id.'"> 
             <div class="form-group row fa-pull-right">
                 <div class="col-sm-12">
-                    <button type="button" onclick="proceed();" class="btn btn-primary">Submit</button>
+                    <button type="submit"  class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </form>';
@@ -111,16 +109,14 @@ echoHead();
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-
+    <?php echoSidebar(); ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
         <div id="content">
 
-            <?php
-            echoNavbar($user);
-            ?>
+            <?php echoNavbar($user); ?>
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
