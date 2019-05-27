@@ -7,6 +7,8 @@
  */
 
 require_once('./config/database.php');
+require_once('./classes/System.php');
+require_once('./classes/EML_Parsing.php');
 require_once('./components/auth_user.php');
 
 if(!$user){
@@ -109,7 +111,7 @@ echoHead();
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <?php echoSidebar($db,$user,'modify_course'); ?>
+    <?php echoSidebar($system,$parsing,$user,'modify_course'); ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 

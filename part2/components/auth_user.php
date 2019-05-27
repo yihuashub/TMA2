@@ -21,6 +21,8 @@ function get_user($db,$email)
 ///
 /// start global  variable
 $db = new Database();
+$system = new System($db);
+$parsing = new EML_Parsing($db);
 $user = null;
 $login = '';
 

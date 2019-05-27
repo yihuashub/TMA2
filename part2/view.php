@@ -6,7 +6,10 @@
  * Time: 4:21 PM
  */
 
+// Import System Classes
 require_once('./config/database.php');
+require_once('./classes/System.php');
+require_once('./classes/EML_Parsing.php');
 require_once('./components/auth_user.php');
 
 if(!$user){
@@ -19,63 +22,6 @@ require_once('./components/footer.php');
 require_once('./components/navbar.php');
 require_once('./components/sidebar.php');
 
-function check_exist($id,$user_id)
-{
-    $db = new Database();
-
-    $sql = "SELECT * FROM `bookmarks` WHERE `id` = '$id' AND `user_id` = '$user_id';";
-    $result = $db->query($sql);
-
-    if ($result && mysqli_num_rows($result) > 0) {
-        return mysqli_fetch_assoc($result);
-    }
-    else{
-        return false;
-    }
-}
-
-
-function echoAddBookmark(){
-    echo '
-        <form id="eml-form" method="post" action="processing_modify.php">
-            <div class="form-group row">
-                <label for="eml"  class="col-sm-2 col-form-label">Please enter EML here</label>
-                <textarea class="form-control" id="eml" name="eml" rows="30"></textarea>
-            </div>
-            <div class="form-group row fa-pull-right">
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </form>';
-}
-
-function echoEditBookmark($id,$user_id){
-    $result = check_exist($id,$user_id);
-
-    if($result){
-        echo '
-        <form id="url-form" method="post" action="register_user.php">
-            <div class="form-group row">
-                <label for="url" class="col-sm-2 col-form-label">Website Ur;</label>
-                <div class="col-sm-10">
-                    <input id="url" name="url" onchange="checkUrlFormat()"  type="text" class="form-control"  placeholder="Url" value="'.$result['url'].'" required>
-                    <div id="message"></div>
-                </div>
-            </div>
-              <input type="hidden" id="bookmark_id" name="bookmark_id" value="'.$id.'"> 
-            <div class="form-group row fa-pull-right">
-                <div class="col-sm-12">
-                    <button type="submit"  class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </form>';
-    }
-    else{
-        echo '<h3 style="color: red">Sorry you cannot access.</h3>';
-    }
-
-}
 
 $message = null;
 $course = null;
@@ -83,16 +29,18 @@ $lesson =null;
 
 if(isset($_GET))
 {
-    if(!empty($_GET['course']) )
+    if(!empty($_GET['course']))
     {
         $course = $_GET['course'];
 
-        if(!empty($_GET['lesson'])){
+        if( !empty($_GET['lesson'])){
             $lesson = $_GET['lesson'];
+            $parsing->set_course($course);
+            $parsing_string = $parsing->parsing_lesson($lesson);
         }
     }
     else{
-        $message="Error 401";
+        $message="Error 403";
     }
 }
 
@@ -109,7 +57,8 @@ echoHead();
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <?php echoSidebar($db,$user,$course.'+'.$lesson); ?>
+    <?php echoSidebar($system,$parsing,$user,$course.'+lesson+'.$lesson); ?>
+
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -123,18 +72,13 @@ echoHead();
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Add / Edit a Bookmark</h1>
+                    <h1 class="h3 mb-0 text-gray-800"><?php echo $course ?> : <?php echo $parsing->get_subtitle(); ?></h1>
                 </div>
 
                 <div class="row">
-
                     <!-- Area Chart -->
                     <div class="col-12">
                         <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Bookmark</h6>
-                            </div>
                             <!-- Card Body -->
                             <div class="card-body">
                                 <?php
@@ -143,11 +87,11 @@ echoHead();
                                     echo "<h2 style='color: red'>".$message."</h2>";
                                 }
                                 else{
-                                    if(strcmp($method,'1') === 0) {
-                                        echoAddBookmark();
 
-                                    }  else if(strcmp($method,'2') === 0){
-                                        echoEditBookmark($bookmark_id,$user['id']);
+                                    if($parsing_string){
+                                        foreach ($parsing_string as $row){
+                                            echo $row;
+                                        }
                                     }
                                 }
                                 ?>

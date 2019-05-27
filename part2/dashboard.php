@@ -5,7 +5,10 @@
  * Date: 2019-05-16
  * Time: 4:21 PM
  */
+// Import System Classes
 require_once('./config/database.php');
+require_once('./classes/System.php');
+require_once('./classes/EML_Parsing.php');
 require_once('./components/auth_user.php');
 
 if(!$user){
@@ -17,8 +20,6 @@ require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
 require_once('./components/sidebar.php');
-
-$db = new Database();
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ echoHead();
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-    <?php echoSidebar($db,$user,'dashboard'); ?>
+    <?php echoSidebar($system,$parsing,$user,'dashboard'); ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 

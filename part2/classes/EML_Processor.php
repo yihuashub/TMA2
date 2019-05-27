@@ -5,16 +5,18 @@ class EML_Processor
 {
     private $db;
     private $eml;
-    private $course_name;
+    private $user;
+    private $course_code;
     private $course_instructor;
     private $simplexml_load_string;
     private $xml_element;
 
 
-    public function __construct($db, $eml)
+    public function __construct($db, $eml,$user)
     {
         $this->db = $db;
         $this->eml = $eml;
+        $this->user = $user;
         $this->simplexml_load_string=simplexml_load_string($eml);
         $this->course_name = $this->simplexml_load_string->attributes();
         $this->xml_element = new SimpleXMLElement($eml);
@@ -33,8 +35,8 @@ class EML_Processor
         }
     }
 
-    private function create_table($course_name){
-        $sql = "CREATE TABLE `learning`.`$course_name` ( `id` INT(6) NOT NULL AUTO_INCREMENT , `key_word` VARCHAR(30) NOT NULL ,`key_type` VARCHAR(30) NOT NULL , `eml` VARCHAR(55555) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+    private function create_table($course_code){
+        $sql = "CREATE TABLE `learning`.`$course_code` ( `id` INT(6) NOT NULL AUTO_INCREMENT , `key_word` VARCHAR(30) NOT NULL ,`key_type` VARCHAR(30) NOT NULL , `eml` VARCHAR(55555) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -43,8 +45,8 @@ class EML_Processor
         }
     }
 
-    private function delete_table($course_name){
-        $sql = "DROP TABLE `$course_name`;";
+    private function delete_table($course_code){
+        $sql = "DROP TABLE `$course_code`;";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -53,8 +55,18 @@ class EML_Processor
         }
     }
 
-    public function check_exist($course_name){
-        $sql = "SHOW TABLES LIKE '$course_name' ";
+    private function addToCourseList($course_code,$user_id){
+        $sql = "INSERT INTO `course_list` (`id`, `course_code`, `user_id`) VALUES (NULL, '$course_code', '$user_id'); ";
+        if ($this->db->query($sql) === TRUE) {
+            return true;
+        } else {
+            echo $this->db->error();
+            return false;
+        }
+    }
+
+    public function check_exist($course_code){
+        $sql = "SHOW TABLES LIKE '$course_code' ";
         $result = $this->db->query($sql);
 
         if ($result && mysqli_num_rows($result) > 0) {
@@ -64,7 +76,7 @@ class EML_Processor
         }
     }
 
-    public function parsing()
+    public function addCourse()
     {
         $this->course_name = $this->simplexml_load_string->attributes();
 
@@ -75,6 +87,8 @@ class EML_Processor
             }else{
                 echo "failed delete.";
             }
+        }else{
+            $this->addToCourseList($this->course_name,$this->user['id']);
         }
 
         echo "Creating this table";
@@ -87,13 +101,6 @@ class EML_Processor
             }else{
                 echo " failed <br>";
             }
-
-//            echo $child->getName()."<br>";
-//
-//            if (strcmp($child->getName(), 'overall') === 0) {
-//                echo $child->asXML();
-//               // $this->save_row('overall',$child->asXML());
-//            }
         }
     }
 

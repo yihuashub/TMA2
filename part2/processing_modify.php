@@ -1,10 +1,8 @@
 <?php
-ini_set("display_errors", 1);
-ini_set("track_errors", 1);
-ini_set("html_errors", 1);
-error_reporting(E_ALL);
-
+// Import System Classes
 require_once('./config/database.php');
+require_once('./classes/System.php');
+require_once('./classes/EML_Parsing.php');
 require_once('./components/auth_user.php');
 
 if(!$user){
@@ -111,7 +109,7 @@ echoHead();
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <?php echoSidebar($db,$user,'modify_course'); ?>
+    <?php echoSidebar($system,$parsing,$user,'modify_course'); ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -128,8 +126,8 @@ echoHead();
                 if($eml)
                 {
 
-                    $parseEML = new EML_Processor(new Database(),$eml);
-                    $parseEML->parsing();
+                    $parseEML = new EML_Processor(new Database(),$eml,$user);
+                    $parseEML->addCourse();
                     echo "233 ".$parseEML->get_course_name();
                     //$xml = simplexml_load_string($eml);
 

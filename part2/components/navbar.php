@@ -8,7 +8,7 @@ function echoNavbar($user)
     {
         $username = $user['firstname'].' '.$user['lastname'];
         if($user['role'] === '0'){
-            $user_role = 'a students';
+            $user_role = 'a student';
         }else{
             $user_role = 'an instructor';
         }

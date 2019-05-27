@@ -6,6 +6,8 @@
  * Time: 4:21 PM
  */
 require_once('./config/database.php');
+require_once('./classes/EML_Parsing.php');
+require_once('./classes/System.php');
 require_once('./components/auth_user.php');
 
 if(!$user){
@@ -20,6 +22,10 @@ require_once('./components/sidebar.php');
 
 $db = new Database();
 
+// Import Classes
+require_once ('./classes/System.php');
+require_once ('./classes/EML_Parsing.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,8 +38,7 @@ echoHead();
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-
-    <?php echoSidebar($db,$user); ?>
+    <?php echoSidebar($system,$parsing,$user,'register_course'); ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -50,90 +55,41 @@ echoHead();
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Brand Buttons</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>Google and Facebook buttons are available featuring each company's respective brand color. They are used on the user login and registration pages.</p>
-                                <p>You can create more custom buttons by adding a new color variable in the <code>_variables.scss</code> file and then using the Bootstrap button variant mixin to create a new style, as demonstrated in the <code>_buttons.scss</code> file.</p>
-                                <a href="#" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i> .btn-google</a>
-                                <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f fa-fw"></i> .btn-facebook</a>
+                    <?php
+                    $mSystem = new System($db);
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Brand Buttons</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>Google and Facebook buttons are available featuring each company's respective brand color. They are used on the user login and registration pages.</p>
-                                <p>You can create more custom buttons by adding a new color variable in the <code>_variables.scss</code> file and then using the Bootstrap button variant mixin to create a new style, as demonstrated in the <code>_buttons.scss</code> file.</p>
-                                <a href="#" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i> .btn-google</a>
-                                <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f fa-fw"></i> .btn-facebook</a>
+                    $courseList = $mSystem->get_course_list();
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Brand Buttons</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>Google and Facebook buttons are available featuring each company's respective brand color. They are used on the user login and registration pages.</p>
-                                <p>You can create more custom buttons by adding a new color variable in the <code>_variables.scss</code> file and then using the Bootstrap button variant mixin to create a new style, as demonstrated in the <code>_buttons.scss</code> file.</p>
-                                <a href="#" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i> .btn-google</a>
-                                <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f fa-fw"></i> .btn-facebook</a>
+                    if($courseList){
+                        foreach ($courseList as $item){
+                            $parsing->set_course($item["course_code"]);
+                            $mOverall = $parsing->get_overall();
+                            if($mOverall){
+                                echo '
+                                <div class="col-lg-6">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">'.$item["course_code"].': '.$mOverall["title"].'</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>'.$mOverall["introduction"].'</p>
+                                             <ul>
+                                              <li><strong>Instructor: </strong>'.$mOverall["instructor"].'</li>
+                                              <li><strong>Discipline: </strong>'.$mOverall["discipline"].'</li>
+                                            </ul> 
+                                            <a href="#" class="btn btn-primary btn-block">Register</a>
+                                        </div>
+                                    </div>
+                                </div>';
+                            }else{
+                                echo '<h1 style="color: red">Something went wrong to read '.$item["course_code"].'';
+                            }
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Brand Buttons</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>Google and Facebook buttons are available featuring each company's respective brand color. They are used on the user login and registration pages.</p>
-                                <p>You can create more custom buttons by adding a new color variable in the <code>_variables.scss</code> file and then using the Bootstrap button variant mixin to create a new style, as demonstrated in the <code>_buttons.scss</code> file.</p>
-                                <a href="#" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i> .btn-google</a>
-                                <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f fa-fw"></i> .btn-facebook</a>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Brand Buttons</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>Google and Facebook buttons are available featuring each company's respective brand color. They are used on the user login and registration pages.</p>
-                                <p>You can create more custom buttons by adding a new color variable in the <code>_variables.scss</code> file and then using the Bootstrap button variant mixin to create a new style, as demonstrated in the <code>_buttons.scss</code> file.</p>
-                                <a href="#" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i> .btn-google</a>
-                                <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f fa-fw"></i> .btn-facebook</a>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Brand Buttons</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>Google and Facebook buttons are available featuring each company's respective brand color. They are used on the user login and registration pages.</p>
-                                <p>You can create more custom buttons by adding a new color variable in the <code>_variables.scss</code> file and then using the Bootstrap button variant mixin to create a new style, as demonstrated in the <code>_buttons.scss</code> file.</p>
-                                <a href="#" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i> .btn-google</a>
-                                <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f fa-fw"></i> .btn-facebook</a>
-
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    }else{
+                        echo '<h1 style="color: red">There is no any course available now.</h1>';
+                    }
+                    ?>
                 </div>
 
             </div>

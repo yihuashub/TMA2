@@ -1,5 +1,8 @@
 <?php
+// Import System Classes
 require_once('./config/database.php');
+require_once('./classes/System.php');
+require_once('./classes/EML_Parsing.php');
 require_once('./components/auth_user.php');
 
 if($user){
@@ -13,9 +16,7 @@ require_once('./components/navbar.php');
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-echoHead();
-?>
+<?php echoHead(); ?>
 
 <body class="bg-gradient-primary">
 
