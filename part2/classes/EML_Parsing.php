@@ -68,6 +68,129 @@ class EML_Parsing
         $array = json_decode($json,TRUE);
         return $array;
     }
+    private function parsing_to_quiz_answer($parsing_string){
+        if($parsing_string){
+            $result = array();
+            $xml = new SimpleXMLElement($parsing_string);
+            foreach ($xml->question as $key=>$children) {
+
+                if(strcmp($children->type,'checkbox')===0){
+                    $index = 0;
+                    $options = array();
+                    foreach ($children->option as $child){
+                        $index++;
+                        if($child->attributes()){
+                            array_push($options,$index);
+                        }
+                    }
+                    array_push($result,$options);
+                }else if(strcmp($children->type,'radio')===0){
+                    $index = 0;
+                    $options = array();
+                    foreach ($children->option as $child){
+                        $index++;
+                        if($child->attributes()){
+                            array_push($result,$index);
+                        }
+                    }
+                }else{
+                    array_push($result,$children->answer->__toString());
+                }
+
+//                foreach ($children as $child){
+//                    if(strcmp($child->getName(),'answer')==0){
+//                        echo ($index).'--->'.$child->__toString().'<br/>';
+//
+//                        array_push($result,$child->__toString());
+//                        echo $child.'<br/>';
+//                    }
+//                    else if(strcmp($child->getName(),'option')==0){
+//                        if($child->attributes()){
+//                            echo ($index).'---'.$child.'<br/>';
+//                            array_push($options,$index);
+//                        }
+//                    }
+//                }
+
+            }
+            return $result;
+        }else{
+            return false;
+        }
+    }
+
+    private function parsing_to_quiz_html($parsing_string){
+        if($parsing_string){
+            $result = array();
+            $xml = new SimpleXMLElement($parsing_string);
+            $index = 0;
+            array_push($result,'  <input type="hidden"  name="course" value="'.$this->course_code.'"> ');
+            array_push($result,'  <input type="hidden"  name="quiz" value="'.$xml->attributes().'"> ');
+
+            foreach ($xml->question as $key=>$children) {
+                $index++;
+                $string = '<h3>'.$index.'. '.$children->questionText.'</h3>';
+                array_push($result,$string);
+
+                if(strcmp($children->type,'text')==0){
+                    $string = '
+                           <div class="form-group">
+                           <small id="id_s_'.$index.'" class="form-text text-muted">This question <strong>only accept text</strong> as answer. </small>
+                            <input type="text" class="form-control" id="id_'.$index.'" name="q_'.$index.'" aria-describedby="emailHelp" placeholder="Enter text">
+                          </div>';
+                    array_push($result,$string);
+                }
+                else if(strcmp($children->type,'number')==0){
+                    $string = '
+                           <div class="form-group">
+                           <small id="id_s_'.$index.'" class="form-text text-muted">This question <strong>only accept number</strong> as answer. </small>
+                            <input type="number" class="form-control" id="id_'.$index.'" name="q_'.$index.'" aria-describedby="emailHelp" placeholder="Enter number">
+                          </div>';
+                    array_push($result,$string);
+                }
+                else if(strcmp($children->type,'radio')==0){
+                    $sub_index=0;
+                    $string ='<small id="id_s_'.$index.'" class="form-text text-muted">This question has <strong>only one</strong> correct answer.</small>';
+                    array_push($result,$string);
+
+                    foreach ($children->option as $child) {
+                        $sub_index++;
+                        $string ='<div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" value="'.$sub_index.'" id="q_'.$index.'_'.$sub_index.'" name="q_'.$index.'">
+                                  <label class="custom-control-label" for="q_'.$index.'_'.$sub_index.'">'.$child.'</label>
+                                </div>';
+                        array_push($result,$string);
+                    }
+                }
+                else if(strcmp($children->type,'checkbox')==0){
+                    $sub_index=0;
+                    $string ='<small id="id_s_'.$index.'" class="form-text text-muted">This question has <strong>multiple</strong> correct answers.</small>';
+                    array_push($result,$string);
+
+                    foreach ($children->option as $child) {
+                        $sub_index++;
+                        $string ='<div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" value="'.$sub_index.'" id="q_'.$index.'_'.$sub_index.'" name="q_'.$index.'[]">
+                                    <label class="custom-control-label" for="q_'.$index.'_'.$sub_index.'">'.$child.'</label>
+                                </div>';
+                        array_push($result,$string);
+                    }
+                }
+                $string = '<code>'.$children.'</code>';
+                array_push($result,$string);
+
+                foreach ($children->children() as $key=>$child) {
+                    if($child->type){
+
+                    }
+                }
+                array_push($result,'<hr/>');
+            }
+            return $result;
+        }else{
+            return false;
+        }
+    }
 
     private function parsing_to_html($parsing_string){
         if($parsing_string){
@@ -161,6 +284,7 @@ class EML_Parsing
             }
         }else{
             echo "<h1 style='color: red'>This course is no longer exist.</h1>";
+            return false;
         }
     }
 
@@ -179,7 +303,45 @@ class EML_Parsing
             }
         }else{
             echo "<h1 style='color: red'>This course is no longer exist.</h1>";
+            return false;
         }
     }
 
+    public function parsing_quiz($id){
+        if($this->check_exist($this->course_code)){
+            $sql = "SELECT * FROM `$this->course_code` WHERE `key_word` = 'quiz_".$id."';";
+            $result = $this->db->query($sql);
+            $eml ='';
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $eml = $row['eml'];
+                }
+                return $this->parsing_to_quiz_html($eml);
+            } else {
+                return false;
+            }
+        }else{
+            echo "<h1 style='color: red'>This course is no longer exist.</h1>";
+            return false;
+        }
+    }
+
+    public function parsing_quiz_answer($id){
+        if($this->check_exist($this->course_code)){
+            $sql = "SELECT * FROM `$this->course_code` WHERE `key_word` = 'quiz_".$id."';";
+            $result = $this->db->query($sql);
+            $eml ='';
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $eml = $row['eml'];
+                }
+                return $this->parsing_to_quiz_answer($eml);
+            } else {
+                return false;
+            }
+        }else{
+            echo "<h1 style='color: red'>This course is no longer exist.</h1>";
+            return false;
+        }
+    }
 }

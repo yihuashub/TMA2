@@ -57,48 +57,30 @@ echoHead();
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Your Course List</h6>
-                                <div class="dropdown no-arrow">
-                                    <a href="modify_course.php?method=1" class="btn btn-success btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-plus-circle"></i>
-                                        </span>
-                                        <span class="text">Add a new Bookmarking</span>
-                                    </a>
-                                </div>
+                                <h6 class="m-0 font-weight-bold text-primary">News List</h6>
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
-                                <ul class="list-group">
-<!--                                    --><?php
-//                                    require_once('./components/EML_Processor.php');
-//
-//                                    $bookmark = new Bookmark($db,$user['id']);
-//
-//                                    $results = $bookmark->get_user_list();
-//
-//                                    if($results){
-//                                        foreach ($results as $item) {
-//                                            echo '
-//                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-//                                        <a href="'.$item["url"].'" target="_blank">
-//                                        '.$item["url"].'
-//                                            </a>
-//                                        <span class="badge ">
-//                                            <a href="./modify_course.php?bookmark_id='.$item["id"].'&method=2" class="btn btn-primary btn-circle btn-sm">
-//                                                <i class="fas fa-pencil-alt"></i>
-//                                            </a>
-//                                            <a href="./delete_bookmark.php?bookmark_id='.$item["id"].'" class="btn btn-danger btn-circle btn-sm">
-//                                                <i class="fas fa-trash"></i>
-//                                            </a>
-//                                        </span>
-//                                    </li>';
-//                                        }
-//                                    }else{
-//                                        echo '<p>Sorry the data is empty</p>';
-//                                    }
-//                                    ?>
-                                </ul>
+                                <div class="list-group">
+                                    <?php
+                                    $news_array = $system->get_news();
+                                    if($news_array){
+                                        foreach ($news_array as $news){
+                                            echo '
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">#'.$news["id"].'</h5>
+                                            <small>'.date("Y/m/d",$news["time"]).'</small>
+                                        </div>
+                                        <p class="mb-1">'.$news["news"].'</p>
+                                    </a>';
+                                        }
+
+                                    }else{
+                                        echo '<h3 style="color: red">News not found.</h3>';
+                                    }
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>

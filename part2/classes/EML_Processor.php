@@ -104,34 +104,6 @@ class EML_Processor
         }
     }
 
-    public function sss(){
-//        $course = array();
-//        if ($this->xml === false) {
-//            echo "Failed loading XML: ";
-//            foreach(libxml_get_errors() as $error) {
-//                echo "<br>", $error->message;
-//            }
-//        } else {
-//            //print_r($xml);
-//        }
-//
-//        echo "Couese name ".$this->xml->attributes();
-//
-//        foreach($xml->product->catalog_item as $item)
-//        {
-//            foreach ($item->attributes() as $attKey ) {
-//                echo $attKey;
-//            }
-//            foreach($item as $key => $value)
-//            {
-//                echo $value->attributes() ;
-//
-//                $course[(string)$key] = (string)$value;
-//            }
-//
-//            $course[] = $course;
-//        }
-    }
 
     public function get_user_list()
     {

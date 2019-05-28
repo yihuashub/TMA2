@@ -93,6 +93,19 @@ echoHead();
                                             echo $row;
                                         }
                                     }
+
+                                    echo '
+                                         <div class="container">
+                                          <div class="row">
+                                            <div class="col text-center">
+                                                <a href="quiz.php?course='.$course.'&quiz='.$lesson.'" class="btn btn-primary btn-icon-split btn-lg">
+                                                    <span class="icon text-white-50">
+                                                      <i class="fas fa-flag"></i>
+                                                    </span>
+                                                    <span class="text">Start the quiz</span>
+                                                  </a>
+                                             </div>
+                                          </div>';
                                 }
                                 ?>
                             </div>

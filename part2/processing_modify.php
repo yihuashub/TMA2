@@ -14,7 +14,6 @@ require_once('./components/footer.php');
 require_once('./components/navbar.php');
 require_once('./components/sidebar.php');
 
-$db = new Database();
 // Class
 require_once('./classes/EML_Processor.php');
 
@@ -72,24 +71,6 @@ if(isset($_POST)) {
     if ($user) {
         if (!empty($_POST['eml'])) {
             $eml = $_POST['eml'];
-
-//            if (!empty($_POST['bookmark_id'])) {
-//                $bookmark_id = $_POST['bookmark_id'];
-//                $status = update_db($url, $bookmark_id);
-//                if ($status) {
-//                    $message = $url . ' was successful update!';
-//                } else {
-//                    $message = $url . ' was not update.';
-//                }
-//
-//            }else{
-//                $status = insert_db($url, $user['id']);
-//                if ($status) {
-//                    $message = $url . ' was successful insert!';
-//                } else {
-//                    $message = $url . ' was not insert.';
-//                }
-//            }
         }
     }
 }
@@ -128,19 +109,8 @@ echoHead();
 
                     $parseEML = new EML_Processor(new Database(),$eml,$user);
                     $parseEML->addCourse();
+                    $system->insert_news(''.$user["firstname"].' '.$user["lastname"].' has create / update course: '.$parseEML->get_course_name().'! Hurry up! take look at the new content.',$user["id"]);
                     echo "233 ".$parseEML->get_course_name();
-                    //$xml = simplexml_load_string($eml);
-
-//                    $sxe=new SimpleXMLElement($eml);
-//                    echo $sxe->getName() . "<br>";
-//
-//                    foreach ($sxe->children() as $child)
-//                    {
-//                        echo $child->getName() . "<br>";
-//                        if(strcmp($child->getName(),'overall') === 0){
-//                            echo $child->asXML();
-//                        }
-//                    }
                     echo '
                 <div class="text-center">
                     <i class="fa fa-thumbs-up" style="font-size:48px;color:green"></i>

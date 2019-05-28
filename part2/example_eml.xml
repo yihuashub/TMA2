@@ -30,7 +30,7 @@
             <text-same-line>World</text-same-line>
 
             <video width="320" height="240" type="video/mp4">
-                https://www.w3schools.com/tags/movie.mp4
+                http://test.yihua.ca/TMA2/part2/upload/movie.mp4
             </video>
             <text term="Quotes">
                 You can mix and match single quotes ' with double quotes " and they should work the same in any case. What is useful is when you want to display either single/ double quotes to the user. You should then nest the quotes you wish to show in the opposing quotes.
@@ -520,17 +520,15 @@
         <question>
             <questionText>Which one is correct statement?</questionText>
             <type>radio</type>
-            <answer>1</answer>
-            <option>HTTPS is stand by Hypertext Transfer Protocol Second Generation</option>
+            <option answer="true">HTTPS is stand by Hypertext Transfer Protocol Second Generation</option>
             <option>HTTPS is the standard for transferring encrypted data on the web.</option>
         </question>
         <question>
             <questionText>Which one is NOT correct statement?</questionText>
             <type>radio</type>
-            <answer>3</answer>
             <option>jQuery (jQuery.org) is currently the most popular of hundreds of JavaScript libraries. </option>
             <option>jQuery simplifies JavaScript programming by making it easier to manipulate a web page’s elements and interact with servers in a portable manner across various web browsers. </option>
-            <option>jQuery is written by Java 8.</option>
+            <option answer="true">jQuery is written by Java 8.</option>
             <option>It provides a library of custom graphical user interface (GUI) controls (beyond the basic GUI controls provided by HTML5) that can be used to enhance the look and feel of your web pages.</option>
         </question>
         <question>
@@ -541,25 +539,30 @@
         <question>
             <questionText>The flowing HTML 5 elements which is tables element?</questionText>
             <type>checkbox</type>
-            <answer>1</answer>
-            <answer>3</answer>
-
-            <option>td</option>
+            <option answer="true">td</option>
             <option>li</option>
-            <option>lu</option>
+            <option answer="true">lu</option>
             <option>tr</option>
         </question>
         <question>
             <questionText>The email input type must has '@' in the text.</questionText>
             <type>radio</type>
-            <answer>1</answer>
-            <option>true</option>
+            <option answer="true">true</option>
             <option>false</option>
         </question>
         <question>
             <questionText>HTML heading( h1 through  h ?), what is it?</questionText>
             <type>number</type>
             <answer>6</answer>
+        </question>
+        <question>
+            <questionText>is number?</questionText>
+            <type>checkbox</type>
+            <option answer="true">1</option>
+            <option>d</option>
+            <option answer="true">2</option>
+            <option>f</option>
+            <option answer="true">5</option>
         </question>
     </quiz>
 </course>

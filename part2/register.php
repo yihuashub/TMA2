@@ -52,6 +52,16 @@ require_once('./components/navbar.php');
                                     <input type="password" name="repassword" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="student" id="student" name="role" checked>
+                                    <label class="custom-control-label" for="student">I'm a Student</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="instructor" id="instructor" name="role">
+                                    <label class="custom-control-label" for="instructor">I'm an Instructor</label>
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                 Register Account
                             </button>

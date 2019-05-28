@@ -1,14 +1,19 @@
 <?php
-ini_set("display_errors", 1);
-ini_set("track_errors", 1);
-ini_set("html_errors", 1);
-error_reporting(E_ALL);
-
+// Import System Classes
 require_once('./config/database.php');
+require_once('./classes/System.php');
+require_once('./classes/EML_Parsing.php');
+require_once('./components/auth_user.php');
+
+if(!$user){
+    $link = './login.php';
+    header( "Location: $link" ) ;
+}
 
 require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
+require_once('./components/sidebar.php');
 
 $salt = time();
 $register = false;
@@ -19,6 +24,7 @@ $lastName = "";
 $password = "";
 $repassword = "";
 $email = "";
+$role = 0;
 
 function check_exit($email)
 {
@@ -35,16 +41,16 @@ function check_exit($email)
     }
 }
 
-function insert_db($email,$firstName,$lastName,$password,$salt)
+function insert_db($email,$role,$firstName,$lastName,$password,$salt)
 {
     $db = new Database();
     $hashPassword = md5($password. $salt);
 
-    $sql = "INSERT INTO `users` (`id`, `email`, `firstname`, `lastname`, `password`, `salt`) VALUES (NULL, '$email', '$firstName', '$lastName', '$hashPassword', '$salt'); ";
+    $sql = "INSERT INTO `users` (`id`, `email`, `role`, `firstname`, `lastname`, `password`, `salt`) VALUES (NULL, '$email', '$role', '$firstName', '$lastName', '$hashPassword', '$salt'); ";
     $result = $db->query($sql);
 
     if ($result === TRUE) {
-        return true;
+        return $db->insert_id();
     }
     else {
         $message = $db->error();
@@ -59,14 +65,19 @@ if(isset($_POST))
     $password = $_POST['password'];
     $repassword = $_POST['repassword'];
     $email = $_POST['email'];
+    if(strcmp($_POST['role'],'student')!==0){
+        $role = 1;
+    }
 
     if(!empty($firstName) && !empty($lastName) && !empty($password) && !empty($repassword) && !empty($email)){
         if(strcmp($password,$repassword) === 0)
         {
             if(check_exit($email))
             {
-                if (insert_db($email,$firstName,$lastName,$password,$salt)) {
+                $user_id = insert_db($email,$role,$firstName,$lastName,$password,$salt);
+                if ($user_id) {
                     setcookie('login', $email . ',' . md5($password. $salt));
+                    $system->insert_news('Welcome a new '.$_POST['role'].', '.$firstName.' '.$lastName.' join to us!',$user_id);
                     $message = "You were successful registered!";
                     $register = true;
                 }else{

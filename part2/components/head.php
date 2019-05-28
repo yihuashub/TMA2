@@ -11,7 +11,7 @@ function echoHead()
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>The World Best Bookmarking</title>
+    <title>EZ-Learning System</title>
 
     <!-- Custom fonts for this template-->
     <link href="../shared/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

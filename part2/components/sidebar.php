@@ -38,15 +38,15 @@ function echoUsersCourse($system,$parsing,$user,$active_name){
                     <h6 class="collapse-header">Lessons:</h6>';
                     if($lesson_array){
                         foreach($lesson_array as $key=>$value) {
-                        echo '<a class="collapse-item '.((strcmp($active_sub_array_2,"lesson".($key+1))==0)?'active':"").'" href="./view.php?course='.$course["course_code"].'&lesson='.($key+1).'">Lesson '.$value.'</a>';
+                            echo '<a class="collapse-item '.((strcmp($active_sub_array_2,"lesson".($key+1))==0)?'active':"").'" href="./view.php?course='.$course["course_code"].'&lesson='.($key+1).'">Lesson '.$value.'</a>';
                         }
                     }
                     echo'
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Quizzes:</h6>';
                     if($quiz_array){
-                        foreach($quiz_array as $value) {
-                            echo '<a class="collapse-item" href="./quiz.php?course='.$course["course_code"].'&quiz='.$value.'">Quiz '.$value.'</a>';
+                        foreach($quiz_array as $key=>$value) {
+                            echo '<a class="collapse-item '.((strcmp($active_sub_array_2,"quiz".($key+1))==0)?'active':"").'" href="./quiz.php?course='.$course["course_code"].'&quiz='.$value.'">Quiz '.$value.'</a>';
                         }
                     }
                     echo '

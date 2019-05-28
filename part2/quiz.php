@@ -6,14 +6,15 @@
  * Time: 4:21 PM
  */
 
+// Import System Classes
 require_once('./config/database.php');
 require_once('./classes/System.php');
 require_once('./classes/EML_Parsing.php');
 require_once('./components/auth_user.php');
 
-if(!$user){
+if (!$user) {
     $link = './login.php';
-    header( "Location: $link" ) ;
+    header("Location: $link");
 }
 
 require_once('./components/head.php');
@@ -22,38 +23,21 @@ require_once('./components/navbar.php');
 require_once('./components/sidebar.php');
 
 
-function echo_edit_eml(){
-    echo '
-        <form id="eml-form" method="post" action="processing_modify.php">
-            <div class="form-group row">
-                <label for="eml"  class="col-sm-2 col-form-label">Please enter EML here</label>
-                <textarea class="form-control" id="eml" name="eml" rows="30"></textarea>
-            </div>
-            <div class="form-group row fa-pull-right">
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </form>';
-}
-
-
 $message = null;
-$method = null;
-$bookmark_id =null;
+$course = null;
+$quiz = null;
 
-if(isset($_GET))
-{
-    if(!empty($_GET['method']) )
-    {
-        $method = $_GET['method'];
+if (isset($_GET)) {
+    if (!empty($_GET['course'])) {
+        $course = $_GET['course'];
 
-        if(!empty($_GET['bookmark_id'])){
-            $bookmark_id = $_GET['bookmark_id'];
+        if (!empty($_GET['quiz'])) {
+            $quiz = $_GET['quiz'];
+            $parsing->set_course($course);
+            $parsing_string = $parsing->parsing_quiz($quiz);
         }
-    }
-    else{
-        $message="Error 401";
+    } else {
+        $message = "Error 403";
     }
 }
 
@@ -70,7 +54,8 @@ echoHead();
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <?php echoSidebar($system,$parsing,$user,'modify_course'); ?>
+    <?php echoSidebar($system, $parsing, $user, $course . '+quiz+' . $quiz); ?>
+
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -84,31 +69,40 @@ echoHead();
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Add / Edit a Bookmark</h1>
+                    <h1 class="h3 mb-0 text-gray-800"><?php echo $course ?> : Quiz <?php echo $quiz; ?></h1>
                 </div>
 
                 <div class="row">
-
                     <!-- Area Chart -->
                     <div class="col-12">
                         <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Bookmark</h6>
-                            </div>
                             <!-- Card Body -->
                             <div class="card-body">
                                 <?php
-                                if($message)
-                                {
-                                    echo "<h2 style='color: red'>".$message."</h2>";
-                                }
-                                else{
-                                    if(strcmp($method,'1') === 0) {
-                                        echo_edit_eml();
+                                if ($message) {
+                                    echo "<h2 style='color: red'>" . $message . "</h2>";
+                                } else {
 
-                                    }  else if(strcmp($method,'2') === 0){
-                                        echo '<h4>Working on it</h4>';
+                                    if ($parsing_string) {
+                                        echo '<form method="post" action="correction_quiz.php">';
+                                        foreach ($parsing_string as $row) {
+                                            echo $row;
+                                        }
+                                        echo '
+                                        <div class="container">
+                                          <div class="row">
+                                            <div class="col text-center">
+                                                <button class="btn btn-primary btn-icon-split btn-lg">
+                                                    <span class="icon text-white-50">
+                                                      <i class="fas fa-flag"></i>
+                                                    </span>
+                                                    <span class="text">Submit</span>
+                                                  </button>
+                                             </div>
+                                          </div>
+                                        </div>
+                                      </form>';
+
                                     }
                                 }
                                 ?>
@@ -163,9 +157,9 @@ echoLogoutModal();
         }
     }
 
-    function proceed () {
+    function proceed() {
 
-        if(urlFormat){
+        if (urlFormat) {
             var form = document.getElementById('url-form');
             form.setAttribute('method', 'post');
             form.setAttribute('action', './processing_modify.php');
