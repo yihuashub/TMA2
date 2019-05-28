@@ -55,7 +55,7 @@ class EML_Processor
         }
     }
 
-    private function addToCourseList($course_code,$user_id){
+    private function add_to_courseList($course_code,$user_id){
         $sql = "INSERT INTO `course_list` (`id`, `course_code`, `user_id`) VALUES (NULL, '$course_code', '$user_id'); ";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -76,55 +76,37 @@ class EML_Processor
         }
     }
 
-    public function addCourse()
+    public function add_course($system)
     {
         $this->course_name = $this->simplexml_load_string->attributes();
 
         if($this->check_exist($this->course_name)){
-            echo "This course already exists, do you want to override this?";
+            echo "<p>This course already exists, the method will overwrite all contents<p>";
+            echo "<p>Dropping exist database table";
             if($this->delete_table($this->course_name)){
-                echo "This table was successful delete";
+                echo "....<strong style='color: green'>success!</strong></p><br>";
             }else{
-                echo "failed delete.";
+                echo "....<strong style='color: green'>failed.</strong></p><br>";
             }
         }else{
-            $this->addToCourseList($this->course_name,$this->user['id']);
+            $system->register_course($this->course_name,$this->user['id']);
+            $this->add_to_courseList($this->course_name,$this->user['id']);
         }
 
-        echo "Creating this table";
-        $this->create_table($this->course_name);
+        echo "<p>Creating new database table";
+        if($this->create_table($this->course_name)){
+            echo "....<strong style='color: green'>success!</strong></p><br>";
+        }else{
+            echo "....<strong style='color: green'>failed.</strong></p><br>";
+        }
 
         foreach ($this->xml_element->children() as $child) {
-            echo "working on ".$child->getName();
+            echo "<p>working on ".$child->getName().'_'.$child->attributes();
             if($this->save_row($child->getName().'_'.$child->attributes(),$child->getName(),$child->asXML())){
-                echo " is success!<br>";
+                echo "....<strong style='color: green'>success!</strong></p><br>";
             }else{
-                echo " failed <br>";
+                echo "....<strong style='color: green'>failed.</strong></p><br>";
             }
-        }
-    }
-
-
-    public function get_user_list()
-    {
-        if ($this->userId) {
-            $m_user_id = $this->userId;
-            $sql = "SELECT * FROM `bookmarks` WHERE `user_id` = '$m_user_id'  ORDER BY `id` DESC;";
-            $result = $this->db->query($sql);
-
-            $result_array = array();
-
-            if ($result && mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    array_push($result_array, $row);
-                }
-                $this->total = count($result_array);
-                return $result_array;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
         }
     }
 

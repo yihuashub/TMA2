@@ -16,6 +16,23 @@ if(!$user){
     header( "Location: $link" ) ;
 }
 
+if (isset($_POST)) {
+    if (isset($_POST['course'])) {
+        if ($system->delete_course($_POST['course'], $user['id'])) {
+            $news_string = $user['firstname'] . ' ' . $user['lastname'] . ' has deleted course: ' . $_POST['course'] . '. All registered students will automatically drop this course. :(';
+            $system->insert_news($news_string, $user['id']);
+            echo "<script>alert('You have succeeded delete: " . $_POST['course'] . "')</script>";
+            $link = './modify_course.php?method=2';
+            header( "Location: $link" ) ;
+        }
+        else{
+            echo "<script>alert('You have failed delete: " . $_POST['course'] . "')</script>";
+            $link = './modify_course.php?method=2';
+            header( "Location: $link" ) ;
+        }
+    }
+}
+
 require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
@@ -24,17 +41,29 @@ require_once('./components/sidebar.php');
 
 function echo_edit_eml(){
     echo '
-        <form id="eml-form" method="post" action="processing_modify.php">
-            <div class="form-group row">
-                <label for="eml"  class="col-sm-2 col-form-label">Please enter EML here</label>
-                <textarea class="form-control" id="eml" name="eml" rows="30"></textarea>
+    <!-- Area Chart -->
+    <div class="col-12">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Add / Edit a Bookmark</h6>
             </div>
-            <div class="form-group row fa-pull-right">
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+            <!-- Card Body -->
+            <div class="card-body">
+            <form id="eml-form" method="post" action="processing_modify.php">
+                <div class="form-group row">
+                    <label for="eml"  class="col-sm-2 col-form-label">Please enter EML here</label>
+                    <textarea class="form-control" id="eml" name="eml" rows="30"></textarea>
                 </div>
+                <div class="form-group row fa-pull-right">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
             </div>
-        </form>';
+        </div>
+    </div>';
 }
 
 
@@ -70,7 +99,15 @@ echoHead();
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <?php echoSidebar($system,$parsing,$user,'modify_course'); ?>
+
+    <?php
+    if(strcmp($method,'1') === 0) {
+        echoSidebar($system,$parsing,$user,'modify_course');
+    }else if(strcmp($method,'2') === 0){
+        echoSidebar($system,$parsing,$user,'delete_course');
+    }
+
+    ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -84,20 +121,12 @@ echoHead();
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Add / Edit a Bookmark</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Courses Management</h1>
                 </div>
 
                 <div class="row">
 
-                    <!-- Area Chart -->
-                    <div class="col-12">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Bookmark</h6>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
+
                                 <?php
                                 if($message)
                                 {
@@ -108,13 +137,49 @@ echoHead();
                                         echo_edit_eml();
 
                                     }  else if(strcmp($method,'2') === 0){
-                                        echo '<h4>Working on it</h4>';
+                                        $results = $system->get_instructor_create_course($user["id"]);
+                                        if($results){
+                                            foreach ($results as $result){
+                                                $parsing->set_course($result["course_code"]);
+                                                $mOverall = $parsing->get_overall();
+                                                if($mOverall){
+                                                    echo '
+                                                    <div class="col-lg-6">
+                                                        <div class="card shadow mb-4">
+                                                            <div class="card-header py-3">
+                                                                <h6 class="m-0 font-weight-bold text-primary">'.$result["course_code"].': '.$mOverall["title"].'</h6>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p>'.$mOverall["introduction"].'</p>
+                                                                 <ul>
+                                                                  <li><strong>Instructor: </strong>'.$mOverall["instructor"].'</li>
+                                                                  <li><strong>Discipline: </strong>'.$mOverall["discipline"].'</li>
+                                                                </ul> 
+                                                                <form method="post" action="'.(htmlspecialchars($_SERVER["PHP_SELF"])).'">
+                                                                <input type="hidden" name="course" value="' . $result["course_code"] . '">
+                                                                <button onclick="return confirm(\'Are you sure to delete the course?\');" type="submit" name="completeYes" class="btn btn-danger btn-block">
+                                                                Delete
+                                                                </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>';
+                                                }else{
+                                                    echo '<h1 style="color: red">Something went wrong to read '.$result["course_code"].'';
+                                                }
+                                            }
+                                        }else{
+                                            echo "<h1 style='color: red'>You haven't created any course yet.</h1>";
+                                        }
+                                    }
+                                    else{
+                                        if (!isset($_POST)) {
+                                            echo "<h1 style='color: red'>Error 403</h1>";
+                                        }
                                     }
                                 }
                                 ?>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <!-- /.container-fluid -->
@@ -140,39 +205,6 @@ echoHead();
 echoLogoutModal();
 ?>
 
-<script>
-    var urlFormat = false;
-
-    function isURL(s) {
-        var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-        return regexp.test(s);
-    }
-
-    function checkUrlFormat() {
-        var inpObj = document.getElementById("url").value;
-        urlFormat = isURL(inpObj);
-
-        if (!urlFormat) {
-            document.getElementById("message").innerHTML = "The URL format is NOT correct.";
-            document.getElementById("message").className = 'invalid-feedback';
-            document.getElementById("url").className = 'form-control is-invalid';
-        } else {
-            document.getElementById("message").innerHTML = "The URL format is correct.";
-            document.getElementById("message").className = 'valid-feedback';
-            document.getElementById("url").className = 'form-control is-valid';
-        }
-    }
-
-    function proceed () {
-
-        if(urlFormat){
-            var form = document.getElementById('url-form');
-            form.setAttribute('method', 'post');
-            form.setAttribute('action', './processing_modify.php');
-            form.submit();
-        }
-    }
-</script>
 <!-- Bootstrap core JavaScript-->
 <script src="../shared/vendor/jquery/jquery.min.js"></script>
 <script src="../shared/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

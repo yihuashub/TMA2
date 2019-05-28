@@ -72,7 +72,7 @@ echoHead();
                                     if($init){
                                         if($parsing_answer){
                                             if(sizeof($parsing_answer) != (sizeof($_POST)-2)){
-                                                echo "<h1 style='color: red'>Please finish all questions!</h1>";
+                                                echo "<h1 style='color: red'>Please complete all questions!</h1>";
                                             }else{
                                                 $points = 0;
                                                 $array = array_values($_POST);

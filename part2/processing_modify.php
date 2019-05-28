@@ -20,51 +20,11 @@ require_once('./classes/EML_Processor.php');
 
 $salt = time();
 $login = false;
-$message = '';
 
-$firstName = "";
-$lastName = "";
-$password = "";
-$repassword = "";
 $email = "";
-
-function insert_db($url,$user_id)
-{
-    $db = new Database();
-
-    $sql = "INSERT INTO `bookmarks` (`id`, `url`, `user_id`) VALUES (NULL, '$url', '$user_id'); ";
-    $result = $db->query($sql);
-
-    if ($result === TRUE)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-function update_db($url,$url_id)
-{
-    $db = new Database();
-
-    $sql = "UPDATE `bookmarks` SET `url` = '$url' WHERE `id` = '$url_id' ";
-    $result = $db->query($sql);
-
-    if ($result === TRUE)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 
 $eml = null;
 $status = false;
-$bookmark_id = null;
 $message = '';
 
 if(isset($_POST)) {
@@ -106,11 +66,10 @@ echoHead();
                 <?php
                 if($eml)
                 {
-
                     $parseEML = new EML_Processor(new Database(),$eml,$user);
-                    $parseEML->addCourse();
-                    $system->insert_news(''.$user["firstname"].' '.$user["lastname"].' has create / update course: '.$parseEML->get_course_name().'! Hurry up! take look at the new content.',$user["id"]);
-                    echo "233 ".$parseEML->get_course_name();
+                    $parseEML->add_course($system);
+                    $system->insert_news(''.$user["firstname"].' '.$user["lastname"].' has created / updated course: '.$parseEML->get_course_name().'! Hurry up! take look at the new content.',$user["id"]);
+                    echo "<p>End of processing ".$parseEML->get_course_name()."</p>";
                     echo '
                 <div class="text-center">
                     <i class="fa fa-thumbs-up" style="font-size:48px;color:green"></i>
