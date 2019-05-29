@@ -108,7 +108,7 @@ echoHead();
 
                                                 echo '<hr/>';
                                                 $final_grade = $points/sizeof($array) * 100;
-                                                echo "<h3>Overall, your final grade: ".$final_grade."%</h3>";
+                                                echo "<h3>Overview, your final grade: ".$final_grade."%</h3>";
                                             }
                                         }else{
                                             echo '<h1 style="color: red">Error on getting answers</h1>';

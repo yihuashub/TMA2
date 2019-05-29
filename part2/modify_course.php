@@ -141,19 +141,19 @@ echoHead();
                                         if($results){
                                             foreach ($results as $result){
                                                 $parsing->set_course($result["course_code"]);
-                                                $mOverall = $parsing->get_overall();
-                                                if($mOverall){
+                                                $mOverview = $parsing->get_overview();
+                                                if($mOverview){
                                                     echo '
                                                     <div class="col-lg-6">
                                                         <div class="card shadow mb-4">
                                                             <div class="card-header py-3">
-                                                                <h6 class="m-0 font-weight-bold text-primary">'.$result["course_code"].': '.$mOverall["title"].'</h6>
+                                                                <h6 class="m-0 font-weight-bold text-primary">'.$result["course_code"].': '.$mOverview["title"].'</h6>
                                                             </div>
                                                             <div class="card-body">
-                                                                <p>'.$mOverall["introduction"].'</p>
+                                                                <p>'.$mOverview["introduction"].'</p>
                                                                  <ul>
-                                                                  <li><strong>Instructor: </strong>'.$mOverall["instructor"].'</li>
-                                                                  <li><strong>Discipline: </strong>'.$mOverall["discipline"].'</li>
+                                                                  <li><strong>Instructor: </strong>'.$mOverview["instructor"].'</li>
+                                                                  <li><strong>Discipline: </strong>'.$mOverview["discipline"].'</li>
                                                                 </ul> 
                                                                 <form method="post" action="'.(htmlspecialchars($_SERVER["PHP_SELF"])).'">
                                                                 <input type="hidden" name="course" value="' . $result["course_code"] . '">

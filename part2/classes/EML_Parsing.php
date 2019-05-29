@@ -96,22 +96,6 @@ class EML_Parsing
                 }else{
                     array_push($result,$children->answer->__toString());
                 }
-
-//                foreach ($children as $child){
-//                    if(strcmp($child->getName(),'answer')==0){
-//                        echo ($index).'--->'.$child->__toString().'<br/>';
-//
-//                        array_push($result,$child->__toString());
-//                        echo $child.'<br/>';
-//                    }
-//                    else if(strcmp($child->getName(),'option')==0){
-//                        if($child->attributes()){
-//                            echo ($index).'---'.$child.'<br/>';
-//                            array_push($options,$index);
-//                        }
-//                    }
-//                }
-
             }
             return $result;
         }else{
@@ -222,7 +206,7 @@ class EML_Parsing
                         }
                         else if(strcmp($child->getName(),'link')===0){
                             if(isset($attributes_array["href"])){
-                                $string = '<a style="'.$attributes_array["href"].'">'.$child.'</a>';
+                                $string = '<a href="'.$attributes_array["href"].'">'.$child.'</a>';
                                 array_push($result,$string);
                             }
                         }
@@ -242,20 +226,30 @@ class EML_Parsing
                                 array_push($result,$string);
                             }
                         }
+                    }else{
+                        if(strcmp($child->getName(),'text')===0){
+                            $string = '<p>'.$child.'</p>';
+                            array_push($result,$string);
+                        }
+                        else if(strcmp($child->getName(),'br')===0){
+                            $string = '<br/>';
+                            array_push($result,$string);
+                        }
+                        else if(strcmp($child->getName(),'strong')===0){
+                            $string = '<strong>'.$child.'</strong>';
+                            array_push($result,$string);
+                        }
+                        else if(strcmp($child->getName(),'code')===0){
+                            $string = '<code>'.$child.'</code>';
+                            array_push($result,$string);
+                        }
+                        else if(strcmp($child->getName(),'span')===0){
+                            $string = '<span>'.$child.'</span >';
+                            array_push($result,$string);
+                        }
                     }
 
-                    if(strcmp($child->getName(),'text')===0){
-                        $string = '<p>'.$child.'</p>';
-                        array_push($result,$string);
-                    }
-                    else if(strcmp($child->getName(),'code')===0){
-                        $string = '<code>'.$child.'</code>';
-                        array_push($result,$string);
-                    }
-                    else if(strcmp($child->getName(),'text-same-line')===0){
-                        $string = '<span>'.$child.'</span >';
-                        array_push($result,$string);
-                    }
+
                 }
                 array_push($result,'<hr/>');
             }
@@ -269,9 +263,9 @@ class EML_Parsing
         return $this->sub_title;
     }
 
-    public function get_overall(){
+    public function get_overview(){
         if($this->check_exist($this->course_code)){
-            $sql = "SELECT * FROM `$this->course_code` WHERE `key_type` = 'overall';";
+            $sql = "SELECT * FROM `$this->course_code` WHERE `key_type` = 'overview';";
             $result = $this->db->query($sql);
             $eml ='';
             if ($result && mysqli_num_rows($result) > 0) {

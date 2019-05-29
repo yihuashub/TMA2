@@ -5,11 +5,6 @@ require_once('./classes/System.php');
 require_once('./classes/EML_Parsing.php');
 require_once('./components/auth_user.php');
 
-if(!$user){
-    $link = './login.php';
-    header( "Location: $link" ) ;
-}
-
 require_once('./components/head.php');
 require_once('./components/footer.php');
 require_once('./components/navbar.php');
@@ -77,7 +72,7 @@ if(isset($_POST))
                 $user_id = insert_db($email,$role,$firstName,$lastName,$password,$salt);
                 if ($user_id) {
                     setcookie('login', $email . ',' . md5($password. $salt));
-                    $system->insert_news('Welcome a new '.$_POST['role'].', '.$firstName.' '.$lastName.' join to us!',$user_id);
+                    $system->insert_news('A new '.$_POST['role'].', '.$firstName.' '.$lastName.' just joined us, Welcome!',$user_id);
                     $message = "You were successful registered!";
                     $register = true;
                 }else{

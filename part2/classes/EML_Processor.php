@@ -17,11 +17,14 @@ class EML_Processor
         $this->db = $db;
         $this->eml = $eml;
         $this->user = $user;
-        $this->simplexml_load_string=simplexml_load_string($eml);
+        $this->simplexml_load_string=simplexml_load_string($this->xmlEscape($eml));
         $this->course_name = $this->simplexml_load_string->attributes();
         $this->xml_element = new SimpleXMLElement($eml);
     }
 
+    private function xmlEscape($string) {
+        return str_replace('&', '&amp;', $string);
+    }
 
     private function save_row($key_word,$key_type,$sub_eml)
     {

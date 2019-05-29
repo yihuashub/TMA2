@@ -1,0 +1,671 @@
+<?xml version="1.0"?>
+<course code="COMP466">
+    <overview>
+        <title>Advanced Technologies for Web-Based Systems</title>
+        <instructor>Dr.Wang</instructor>
+        <discipline>Computer Science</discipline>
+        <introduction>This new revision of COMP 466 is designed for students to learn some of the advanced Web
+            technologies that are widely used by IT professionals in developing web-based systems and applications. It
+            extends the student's knowledge and skills in computing, network programming, web design, and system
+            analysis, design and development.
+        </introduction>
+    </overview>
+    <lesson belongs="1">
+        <title>Introduction 1 – the Web, HTML5, and CSS</title>
+        <section>
+            <title size="h1">
+                1.3 HTML5, CSS3, JavaScript, Canvas and (cont.)
+            </title>
+        </section>
+        <section>
+            <title size="h2">
+                Overview
+            </title>
+            <video  height="300" width="100%" type="video/mp4">
+                https://test.yihua.ca/TMA2/part2/upload/movie.mp4
+            </video>
+            <text>
+                This video is introduction about basic front-side and back end-side.
+            </text>
+            <span>Youtube Link : </span>
+            <link href="https://www.youtube.com/watch?v=u1Dlq-Iry20">
+                https://www.youtube.com/watch?v=u1Dlq-Iry20
+            </link>
+        </section>
+        <section>
+            <title size="h3">
+                HTML5
+            </title>
+            <image width="42" height="42">
+                https://test.yihua.ca/TMA2/part2/upload/html5.png
+            </image>
+            <text>
+                - HTML (HyperText Markup Language) is a special type of computer language called a markup language
+                designed to specify the content and structure of web pages (also called documents) in a portable manner.
+            </text>
+            <text>
+                - HTML5, now under development, is the emerging version of HTML.
+            </text>
+            <text>
+                - HTML enables you to create content that will render appropriately across the extraordinary range of
+                devices connected to the Internet—including smartphones, tablet computers, notebook computers, desktop
+                computers, special-purpose devices such as large-screen displays at concert arenas and sports stadiums,
+                and more.
+            </text>
+            <text>
+                - A “stricter” version of HTML called XHTML (Extensible HyperText Markup Language), which is based on
+                XML (eXtensible Markup Language), is still used frequently today.
+            </text>
+            <text>
+                - Many of the server-side technologies we cover later in the book produce web pages as XHTML documents,
+                by default, but the trend is clearly to HTML5.
+            </text>
+        </section>
+        <section>
+            <title size="h3">
+                Cascading StyleSheets(CSS)
+            </title>
+            <image width="42" height="42">
+                https://test.yihua.ca/TMA2/part2/upload/css-3-logo-png-transparent.png
+            </image>
+            <text>
+                - Although HTML5 provides some capabilities for controlling a document’s presentation, it’s better not
+                to mix presentation with content.
+            </text>
+            <text>
+                - Cascading Style Sheets (CSS) are used to specify the presentation, or styling, of elements on a web
+                page (e.g., fonts, spacing, sizes, colors, positioning).
+            </text>
+            <text>
+                - CSS was designed to style portable web pages independentlyof their content and structure.
+            </text>
+            <text>
+                - By separating page styling from page content and structure, you can easily change the look and feel of
+                the pages on an entire website, or a portion of a website, simply by swapping out one style sheet for
+                another.
+            </text>
+            <text>
+                - CSS3 is the current version of CSS under development.
+            </text>
+        </section>
+        <section>
+            <title size="h3">
+                JavaScript
+            </title>
+            <image width="42" height="42">
+                https://test.yihua.ca/TMA2/part2/upload/javascript-736400_960_720.png
+            </image>
+            <text>
+                - JavaScript helps you build dynamic web pages (i.e., pages that can be modified “on the fly” in
+                response to events, such as user input, time changes and more) and computer applications.
+            </text>
+            <text>
+                - It enables you to do the client-side programming of web applications.
+            </text>
+            <text>
+                - JavaScript was created by Netscape.
+            </text>
+            <text>
+                - Both Netscape and Microsoft have been instrumental in the standardization of JavaScript by ECMA
+                International (formerly the European Computer Manufacturers Association) as ECMAScript.
+            </text>
+            <text>
+                - ECMAScript 5, the latest version of the standard, corresponds to the version of JavaScript we use in
+                this book.
+            </text>
+            <text>
+                - JavaScript is a portable scripting language. Programs written in JavaScript can run in web browsers
+                across a wide range of devices.
+            </text>
+        </section>
+        <section>
+            <title size="h3">
+                Web Browser sand Web-Browser Portability
+            </title>
+            <text>
+                Ensuring a consistent look and feel on client-side browsers is one of the great challenges of developing
+                web-based applications.
+            </text>
+            <text>
+                Currently, a standard does not exist to which software vendors must adhere when creating web browsers.
+            </text>
+            <text>
+                Although browsers share a common set of features, each browser might render pages differently.
+            </text>
+            <text>
+                Browsers are available in many versions and on many different platforms (Microsoft Windows, Apple
+                Macintosh, Linux, UNIX, etc.).
+            </text>
+            <text>
+                Vendors add features to each new version that sometimes result in cross-platform incompatibility issues.
+            </text>
+            <text>
+                It’s difficult to develop web pages that render correctly on all versions of each browser.
+            </text>
+            <text>
+                All of the code examples in the book were tested in the five most popular desktop browsers and the two
+                most popular mobile browsers (Fig. 1.5).
+            </text>
+        </section>
+        <section>
+            <title size="h3">
+                jQuery
+            </title>
+            <text>
+                jQuery (jQuery.org) is currently the most popular of hundreds of JavaScript libraries.
+            </text>
+            <text>
+                www.activoinc.com/blog/2008/11/03/jquery-emerges-as-most-popular-javascript-library-for-web-development/.
+            </text>
+            <text>
+                jQuery simplifies JavaScript programming by making it easier to manipulate a web page’s elements and
+                interact with servers in a portable manner across various web browsers.
+            </text>
+            <text>
+                It provides a library of custom graphical user interface (GUI) controls (beyond the basic GUI controls
+                provided by HTML5) that can be used to enhance the look and feel of your web pages.
+            </text>
+        </section>
+        <section>
+            <title size="h3">
+                Validating Your HTML5, CSS3and JavaScript Code
+            </title>
+            <text>
+                You must use proper HTML5, CSS3 and JavaScript syntax to ensure that browsers process your documents properly.
+            </text>
+            <text>
+                Figure 1.6 lists the validators we used to validate the code in this book. Where possible, we eliminated validation errors.
+            </text>
+        </section>
+        <section>
+            <title size="h1">
+                2.1 Interoduction
+            </title>
+        </section>
+        <section>
+            <title size="h3">
+                HTML5 (HyperText Markup Language 5) markup language that specifies the structure and
+            </title>
+            <text>
+                content of documents that are displayed in web browsers
+            </text>
+        </section>
+        <section>
+            <title size="h3">
+                We introduce some basics, then cover more sophisticated HTML5 techniques such as:
+            </title>
+            <text>
+                tables, which are particularly useful for structuring information from databases (i.e., software that stores structured sets of data) forms for collecting information from web-page visitors
+            </text>
+            <text>
+                internal linking for easier page navigation meta elements for specifying information about a document
+            </text>
+        </section>
+        <section>
+            <title size="h1">
+                3.1.5 Input Type email
+            </title>
+            <text style="color:blue">
+                The email input type enables the user to enter an e-mail address or a list of e-mail addresses separated by commas (if the multiple attribute is specified).            </text>
+            <text>
+                Currently, all of the browsers display a text field.
+            </text>
+            <text>
+                If the user enters an invalid e-mail address (i.e., the text entered is not in the proper format) and clicks the Submitbutton, a callout asking the user to enter an e-mail address is rendered pointing to the input element (Fig. 3.7).
+            </text>
+            <text>
+                HTML5 does not check whether an e-mail address entered by the user actually exists—rather it just validates that the e-mail address is in the properformat.
+            </text>
+        </section>
+        <section>
+            <title size="h1">
+                3.3 Page-Structure Elements
+            </title>
+            <text>
+                HTML5 introduces several new page-structure elements (Fig. 3.18) that meaningfully identify areas of the page as headers, footers, articles, navigation areas, asides, figures and more.            </text>
+            <text style="color:blue">
+                The header element creates a header for this page that contains both text and graphics.
+            </text>
+            <text>
+                The header element can be used multiple times on a page and can include HTML headings, navigation, images and logos and more.
+            </text>
+        </section>
+        <section>
+            <title size="h4">
+                Time Element
+            </title>
+            <text>
+                The time element, which does not need to be enclosed in a header, enables you to identify a date (as we do here), a time or both.
+            </text>
+        </section>
+    </lesson>
+    <lesson belongs="2">
+        <title>Unit 2: Introduction 2 – Client-side Scripting in JavaScript</title>
+        <section>
+            <title size="h2">
+                6.2 Your First Script: Displaying a Line of Text with JavaScript in a Web Page
+            </title>
+            <title size="h3">
+                A Note About Embedding JavaScriptCode into HTML5 Documents
+            </title>
+            <text>
+                This makes the code more reusable, because it can be included into any HTML5 document—as is the case with the many JavaScript libraries used in professional web development today.            </text>
+            <text>
+                We’ll begin separating both CSS3 and JavaScript into separate files starting in Chapter 10.            </text>
+            <text>
+                A script can display Welcome to JavaScript Programming! in many ways.
+            </text>
+            <text>
+                Figure 6.2 displays the text in magenta, using the CSS color property.
+            </text>
+            <text>
+                Method write displays a string like writeln, but does not position the output cursor in the HTML5 document at the beginning of the next line after writing its argument
+            </text>
+        </section>
+        <section>
+            <title size="h2">
+                6.6 Arithmetic
+            </title>
+            <text>
+                The basic arithmetic operators (+, -, *, /, and %) are binary operators, because they each operate on two operands
+            </text>
+            <text>
+                We’ll begin separating both CSS3 and JavaScript into separate files starting in Chapter 10.
+            </text>
+            <text>
+                A script can display Welcome to JavaScript Programming! in many ways.
+            </text>
+            <text>
+                Figure 6.2 displays the text in magenta, using the CSS color property.
+            </text>
+            <text>
+                Method write displays a string like writeln, but does not position the output cursor in the HTML5 document at the beginning of the next line after writing its argument
+            </text>
+        </section>
+        <section>
+            <title size="h2">
+                7.6 if...else Selection Statement
+            </title>
+            <title size="h4">
+                Conditional operator (?:)
+            </title>
+            <text>
+                Closely related to the if...else statement
+            </text>
+            <text>
+                JavaScript’s only ternary operator—it takes three operands
+            </text>
+            <text>
+                The operands together with the ?: operator form a conditional expression
+            </text>
+            <text>
+                The first operand is a boolean expression
+            </text>
+            <text>
+                The second is the value for the conditional expression if the boolean expression evaluates to true
+            </text>
+            <text>
+                Third is the value for the conditional expression if the boolean expression evaluates to false
+            </text>
+            <text>
+                Nested if...else statements
+            </text>
+            <text>
+                  - Test for multiple cases by placing if...else statements inside other if...else statements
+            </text>
+            <text>
+                The JavaScript interpreter always associates an else with the previous if, unless told to do otherwise by the placement of braces ({})
+            </text>
+            <text>
+                The if selection statement expects only one statement in its body
+            </text>
+            <text>
+                - To include several statements, enclose the statements in braces ({and })
+            </text>
+            <text>
+                - A set of statements contained within a pair of braces is called a block
+            </text>
+        </section>
+        <section>
+            <title size="h2">
+                10.2 Arrays
+            </title>
+            <text>
+                An array is a group of memory locations
+            </text>
+            <text>
+                - All have the same name and normally are of the same type (although this attribute is not required in JavaScript)
+            </text>
+            <text>
+                Each individual location is called an element
+            </text>
+            <text>
+                We may refer to any one of these elements by giving the array’s name followed by the position number of the element in square brackets ([])
+            </text>
+        </section>
+        <section>
+            <title size="h2">
+                13.2 Reviewing the load Event
+            </title>
+            <text>
+                An event handler is a function that responds to an event.
+            </text>
+            <text>
+                Assigning an event handler to an event on a DOM node is called registering anevent handler
+            </text>
+            <text>
+                Method addEventListener can be called multiple times on a DOM node to register more than one event-handling method for an event.
+            </text>
+            <text>
+                It’s also possible to remove an event listener by calling removeEventListener with the same arguments that you passed to addEventListenerto register the event handler.
+            </text>
+            <text>
+                If a script in the head attempts to get a DOM node for an HTML element in the body, getElementByIdreturns null because the body has not yet loaded
+            </text>
+        </section>
+    </lesson>
+    <lesson belongs="3">
+        <title>Unit 3: XML and Ajax</title>
+        <section>
+            <title size="h2">
+                15.4 Namespaces
+            </title>
+            <text>
+                XML namespaces provide a means for document authors to prevent naming collisions
+            </text>
+            <text>
+                Each namespace prefix is bound to a uniform resource identifier (URI) that uniquely identifies the namespace
+            </text>
+            <text>
+                A URI is a series of characters that differentiate names
+            </text>
+            <text>
+                Document authors create their own namespace prefixes
+            </text>
+            <text>
+                Any name can be used as a namespace prefix, but the namespace prefix xml is reserved for use in XML standards
+            </text>
+            <text>
+                To eliminate the need to place a namespace prefix in each element, authors can specify a defaultnamespace for an element and its children
+            </text>
+            <text>
+                We declare a default namespace using keyword xmlns with a URI (Uniform Resource Identifier) as its value
+            </text>
+            <text>
+                Document authors commonly use URLs (Uniform Resource Locators) for URIs, because domain names (e.g., deitel.com) in URLs must be unique
+            </text>
+        </section>
+        <section>
+            <title size="h2">
+                15.5 Document Type Definitions (DTDs)
+            </title>
+            <text>
+                DTDs and schemas specify documents’ element types and attributes, and their relationships to one another
+            </text>
+            <text>
+                DTDs and schemas enable an XML parser to verify whether an XML document is valid (i.e., its elements contain the proper attributes and appear in the proper sequence)
+            </text>
+            <text>
+                A DTD expresses the set of rules for document structure using an EBNF (Extended Backus-Naur Form) grammar
+            </text>
+            <text>
+                In a DTD, an ELEMENT element type declaration defines the rules for an element. An ATTLISTattribute-list declaration defines attributes for a particular element
+            </text>
+        </section>
+        <section>
+            <title size="h2">
+                16.2 Rich Internet Applications(RIAs) with Ajax
+            </title>
+            <title size="h4">
+                Classic HTML registration form
+            </title>
+            <text>
+                Sends all of the data to be validated to the server when the user clicks the Register button
+            </text>
+            <text>
+                While the server is validating the data, the user cannot interact with the page
+            </text>
+            <text>
+                Server finds invalid data, generates a new page identifying the errors in the form and sends it back to the client—which renders the page in the browser
+            </text>
+            <text>
+                User fixes the errors and clicks the Register button again
+            </text>
+            <text>
+                Cycle repeats until no errors are found, then the data is stored on the server
+            </text>
+            <text>
+                Entire page reloads every time the user submits invalid data
+            </text>
+        </section>
+        <section>
+            <title size="h4">
+                Ajax-enabled forms are more interactive
+            </title>
+            <text>
+                Entries are validated individually, dynamically as the user enters data into the fields
+            </text>
+            <text>
+                If a problem is found, the server sends an error message that is asynchronously displayed to inform the user of the problem
+            </text>
+            <text>
+                Sending each entry asynchronously allows the user to address invalid entries quickly, rather than making edits and resubmitting the entire form repeatedly until all entries are valid
+            </text>
+            <text>
+                Asynchronous requests could also be used to fill some fields based on previous fields’ values (e.g., city based on zip code)
+            </text>
+        </section>
+        <section>
+            <title size="h2">
+                16.3 History of Ajax
+            </title>
+            <text>
+                The term Ajax was coined by Jesse James Garrett of Adaptive Path in February 2005, when he was presenting the previously unnamed technology to a client
+            </text>
+            <text>
+                Ajax technologies (HTML, JavaScript, CSS, dynamic HTML, the DOM and XML) had existed for many years prior to 2005
+            </text>
+            <text>
+                In 1998, Microsoft introduced the XMLHttpRequest object to create and manage asynchronous requests and responses
+            </text>
+            <text>
+                Popular applications like Flickr, Google’s Gmail and Google Maps use the XMLHttpRequest object to update pages dynamically
+            </text>
+            <text>
+                Ajax has enabled “webtop” applications to challenge the dominance of established desktop applications
+            </text>
+            <text>
+                This has become increasingly significant as more and more computing moves to “the cloud.”
+            </text>
+        </section>
+        <section>
+            <title size="h2">
+                16.6 Creating a Full-Scale Ajax-Enabled Application
+            </title>
+            <title size="h4">
+                JSON (JavaScript Object Notation)
+            </title>
+            <text>
+                Simple way to represent JavaScript objects as strings
+            </text>
+            <text>
+                A simpler alternative to XML for passing data between the client and the server
+            </text>
+            <title size="h4">
+                JSON object
+            </title>
+            <text>
+                Represented as a list of property names and values contained in curly braces
+            </text>
+            <title size="h4">
+                Array
+            </title>
+            <text>
+                Represented in JSON with square brackets containing a comma-separated list of values
+            </text>
+            <text>
+                Each value in a JSON array can be a string, a number, a JSON representation of an object, true, false or null
+            </text>
+            <title size="h4">
+                JSON object
+            </title>
+            <text>
+                Easier to create and parse than XML
+            </text>
+            <text>
+                Require fewer bytes
+            </text>
+            <text>
+                For these reasons, JSON is commonly used to communicate in client/server interaction
+            </text>
+        </section>
+    </lesson>
+    <quiz belongs="1">
+        <question>
+            <questionText>What is the full name of HTML?</questionText>
+            <type>text</type>
+            <answer>hyperText markup language</answer>
+        </question>
+        <question>
+            <questionText>Which one is correct statement?</questionText>
+            <type>radio</type>
+            <option answer="true">HTTPS is stand by Hypertext Transfer Protocol Second Generation</option>
+            <option>HTTPS is the standard for transferring encrypted data on the web.</option>
+        </question>
+        <question>
+            <questionText>Which one is NOT correct statement?</questionText>
+            <type>radio</type>
+            <option>jQuery (jQuery.org) is currently the most popular of hundreds of JavaScript libraries.</option>
+            <option>jQuery simplifies JavaScript programming by making it easier to manipulate a web page’s elements and
+                interact with servers in a portable manner across various web browsers.
+            </option>
+            <option answer="true">jQuery is written by Java 8.</option>
+            <option>It provides a library of custom graphical user interface (GUI) controls (beyond the basic GUI
+                controls provided by HTML5) that can be used to enhance the look and feel of your web pages.
+            </option>
+        </question>
+        <question>
+            <questionText>What is the full name of XML?</questionText>
+            <type>text</type>
+            <answer>extensible markup language</answer>
+        </question>
+        <question>
+            <questionText>The flowing HTML 5 elements which is tables element?</questionText>
+            <type>checkbox</type>
+            <option answer="true">td</option>
+            <option>li</option>
+            <option answer="true">lu</option>
+            <option>tr</option>
+        </question>
+        <question>
+            <questionText>The email input type must has '@' in the text.</questionText>
+            <type>radio</type>
+            <option answer="true">true</option>
+            <option>false</option>
+        </question>
+        <question>
+            <questionText>HTML heading( h1 through h ?), what is it?</questionText>
+            <type>number</type>
+            <answer>6</answer>
+        </question>
+        <question>
+            <questionText>is number?</questionText>
+            <type>checkbox</type>
+            <option answer="true">1</option>
+            <option>d</option>
+            <option answer="true">2</option>
+            <option>f</option>
+            <option answer="true">5</option>
+        </question>
+    </quiz>
+    <quiz belongs="2">
+        <question>
+            <questionText>JavaScript code is typically placed in a separate file, then included in the HTML5 document that uses the script.</questionText>
+            <type>radio</type>
+            <option answer="true">True</option>
+            <option>False</option>
+        </question>
+        <question>
+            <questionText>What is '30*2' result in JavaScript </questionText>
+            <type>number</type>
+            <answer>60</answer>
+        </question>
+        <question>
+            <questionText>Select all statements are correct</questionText>
+            <type>checkbox</type>
+            <option answer="true">Closely related to the if...else statement</option>
+            <option answer="true">Third is the value for the conditional expression if the boolean expression evaluates to false</option>
+            <option answer="true">With inline HTML5. Where special elements have the tag as the event trigger (ie. &lt;onclick&gt;)</option>
+            <option answer="true">The first operand is a boolean expression</option>
+            <option answer="true">The operands together with the ?: operator form a conditional expression</option>
+        </question>
+        <question>
+            <questionText>var currentIndex++ is same as </questionText>
+            <type>radio</type>
+            <option>var currentIndex = currentIndex - 1</option>
+            <option answer="true">var currentIndex = currentIndex + 1</option>
+            <option>var currentIndex = 1</option>
+            <option>var currentIndex = currentIndex * 1</option>
+        </question>
+        <question>
+            <questionText>How to declare an array in js</questionText>
+            <type>radio</type>
+            <option>{}</option>
+            <option>()</option>
+            <option answer="true">[]</option>
+        </question>
+        <question>
+            <questionText>Which statement is NOT correct</questionText>
+            <type>radio</type>
+            <option>An event handler is a function that responds to an event.</option>
+            <option answer="true">Also possible to remove an event listener by calling destroyEventListener with the same arguments that you passed to addEventListenerto register the event handler.</option>
+            <option>Method addEventListener can be called multiple times on a DOM node to register more than one event-handling method for an event.</option>
+            <option>If a script in the head attempts to get a DOM node for an HTML element in the body, getElementByIdreturns null because the body has not yet loaded</option>
+        </question>
+    </quiz>
+    <quiz belongs="3">
+        <question>
+            <questionText>XML namespaces provide a means for document authors to prevent naming collisions</questionText>
+            <type>radio</type>
+            <option answer="true">True</option>
+            <option>False</option>
+        </question>
+        <question>
+            <questionText>Document Type Definitions (DTDs) which is NOT correct</questionText>
+            <type>radio</type>
+            <answer answer="true">DTDs and schemas specify documents’ element names, and their relationships to one another</answer>
+            <option>DTDs and schemas enable an XML parser to verify whether an XML document is valid (i.e., its elements contain the proper attributes and appear in the proper sequence)</option>
+            <option>A DTD expresses the set of rules for document structure using an EBNF (Extended Backus-Naur Form) grammar</option>
+            <option>In a DTD, an ELEMENT element type declaration defines the rules for an element. An ATTLISTattribute-list declaration defines attributes for a particular element</option>
+        </question>
+        <question>
+            <questionText>Select ALL correct answers for Classic HTML registration form</questionText>
+            <type>checkbox</type>
+            <option answer="true">Sends all of the data to be validated to the server when the user clicks the Register button</option>
+            <option answer="true">User fixes the errors and clicks the Register button again</option>
+            <option answer="true">Cycle repeats until no errors are found, then the data is stored on the server</option>
+            <option answer="true">Entire page reloads every time the user submits invalid data</option>
+        </question>
+        <question>
+            <questionText>Who is created Ajax?</questionText>
+            <type>text</type>
+            <answer>jesse james garrett</answer>
+        </question>
+        <question>
+            <questionText>What is the year of Ajax created</questionText>
+            <type>number</type>
+            <answer>2005</answer>
+        </question>
+        <question>
+            <questionText>What is JSON stand for?</questionText>
+            <type>text</type>
+            <answer>javascript object notation</answer>
+        </question>
+        <question>
+            <questionText>Each value in a JSON array can be a string, a number, a JSON representation of an object, true, false or null</questionText>
+            <answer>1</answer>
+            <option answer="true">True</option>
+            <option>False</option>
+        </question>
+    </quiz>
+</course>

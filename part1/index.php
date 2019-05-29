@@ -67,20 +67,21 @@ echoHead();
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome to bookmarking!</h1>
+                                        <p>You can unlimited add your bookmark for FREE!</p>
                                     </div>
                                     <hr>
                                     <div class="text-center">
                                         <p>Already have an account?</p>
                                     </div>
                                     <a href="./login.php" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Login
+                                        Login
                                     </a>
                                     <br/>
                                     <div class="text-center">
                                         <p>Dont't have an account yet?</p>
                                     </div>
                                     <a href="./register.php" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Register now!
+                                        Register now!
                                     </a>
                                 </div>
                             </div>
