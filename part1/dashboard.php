@@ -83,7 +83,7 @@ echoHead();
                                         '.$item["url"].'
                                             </a>
                                         <span class="badge ">
-                                            <a href="./modify_course.php?bookmark_id='.$item["id"].'&method=2" class="btn btn-primary btn-circle btn-sm">
+                                            <a href="./modify_bookmark.php?bookmark_id='.$item["id"].'&method=2" class="btn btn-primary btn-circle btn-sm">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                             <a href="./delete_bookmark.php?bookmark_id='.$item["id"].'" class="btn btn-danger btn-circle btn-sm">

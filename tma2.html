@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,21 +34,341 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <h1><a id="COMP_466_0"></a>COMP 466</h1>
-                        <h2><a id="Advanced_Technologies_for_WebBased_Systems_Revision_6_2"></a>Advanced Technologies for Web-Based Systems (Revision 6)</h2>
-                        <h2><a id="Assignment_2_3"></a>Assignment 2</h2>
-                        <h4><a id="YIHUA_HUANG_4"></a>YIHUA HUANG</h4>
-                        <h4><a id="Student_ID_3425935_5"></a>Student ID #3425935</h4>
-                        <h4><a id="Start_Date_MAY_20_2019_6"></a>Start Date: MAY 20, 2019</h4>
-                        <h4><a id="Completed_DataMAY_24_2019_7"></a>Completed Data:MAY 24, 2019</h4>
-                        <h4><a id="Estimated_hours_Spent70_hours_8"></a>Estimated hours Spent:70 hours</h4>
-                        <hr />
-                        <h1><a id="Part_1_11"></a>Part 1</h1>
-                        <p>For this project, you will be using MySQL and PHP to develop a web application that provides an online bookmarking service to users on the Internet.</p>
-                        <h3><a id="Online_Demo_Url__httpstestyihuacapart1httpstestyihuacapart1_13"></a>Online Demo Url : <a href="https://test.yihua.ca/TMA2/part1">https://test.yihua.ca/TMA2/part1</a></h3>
-                        <h1><a id="Part_2_15"></a>Part 2</h1>
-                        <p>In this part of the assignment, you are required to develop a small-scale online learning management system that can be used to deliver online courses to learners.</p>
-                        <h3><a id="Online_Demo_Url__httpstestyihuacapart2httpstestyihuacapart2_18"></a>Online Demo Url : <a href="https://test.yihua.ca/TMA2/part2">https://test.yihua.ca/TMA2/part2</a></h3>
+                        <h1 id="comp466assignment2">COMP 466 Assignment 2</h1>
+
+                        <blockquote>
+                            <p><strong>Assignment 2</strong></p>
+
+                            <p><strong>COMP 466 Advanced Technologies for Web-Based Systems</strong></p>
+
+                            <p><strong>YIHUA HUANG</strong> </p>
+
+                            <p><strong>Start Date:</strong> May 16st</p>
+
+                            <p><strong>Finish Date</strong> May 28 st</p>
+
+                            <p><strong>Estimated Hours Spent</strong> 72 hours.</p>
+                        </blockquote>
+
+                        <hr/>
+
+                        <h2 id="part1">Part 1</h2>
+
+                        <p><strong>The original description and requirements of the project:</strong></p>
+
+                        <blockquote>
+                            <p>For this project, you will be using MySQL and PHP to develop a web application that provides an online bookmarking service to users on the Internet.</p>
+                        </blockquote>
+
+                        <p><strong>I interpretation of the assignment project and requirements:</strong></p>
+
+                        <p>To create a basic web application that allows the user to register and sign in. Due to Section 5.4 Advanced Features of PHP which mentioned cookie, I will use it to auth user login state.</p>
+
+                        <p><strong>I analysis and design of the web application</strong>
+                            As a web application, each user will have <strong>their list</strong>. Users can <strong>only</strong> edit their list. In the home page, it has a top 10 list which counts the most popular websites in the whole system.</p>
+
+                        <h3 id="database">Database</h3>
+                        <p>This database config is under the <code>config</code> folder.</p>
+                        <p>There are two tables:
+                            <code>users</code> and <code>bookmarks</code></p>
+
+                        <pre><code>CREATE TABLE `bookmarks` (
+  `id` int(11) NOT NULL,
+  `url` varchar(500) NOT NULL,
+  `user_id` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `users` (
+  `id` int(100) NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `firstname` varchar(200) NOT NULL,
+  `lastname` varchar(200) NOT NULL,
+  `password` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `salt` int(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+</code></pre>
+
+                        <h3 id="securityissue">Security issue</h3>
+
+                        <p>To void the security issue, I use a timestamp as salt then hash (md5) the whole result to store user password in database. When the system has a successful auth user, it will save the hash key as a cookie in the user browser. Delete when the user clicks Logout.</p>
+
+                        <h3 id="frontsidecssframework">Front Side CSS Framework</h3>
+
+                        <p>I found the Bootstrap is allowed to use in  <a href="https://scis.lms.athabascau.ca/mod/forum/discuss.php?d=69375">course forum</a>,  so I used Bootstrap 4 and SB Admin 2 template (MIT License)  in this project that I can put more time on back end functionality.</p>
+
+                        <h3 id="mytestenvironment">My test environment</h3>
+
+                        <p>This application is hosting on an Apache server; PHP 7, MySQL 5</p>
+
+                        <h4 id="onlinedemourlhttpstestyihuacatma2part1httpstestyihuacatma2part1">Online Demo Url : <a href="https://test.yihua.ca/TMA2/part1">https://test.yihua.ca/TMA2/part1</a></h4>
+
+                        <h4 id="testaccount">Test account</h4>
+
+                        <pre><code>user name:test@test.com
+user password:123
+</code></pre>
+<hr/>
+                        <h2 id="part2">Part 2</h2>
+
+                        <p><strong>The original description and requirements of the project:</strong></p>
+
+                        <blockquote>
+                            <p>In this part of the assignment, you are required to develop a small-scale online learning management system that can be used to deliver online courses to learners.</p>
+                        </blockquote>
+
+                        <p><strong>I interpretation of the assignment project and requirements:</strong></p>
+
+                        <p>As a small-scale online learning management system, it should have user login / logout, course register / drop, course add / delete etc.</p>
+
+                        <p><strong>I analysis and design of the web application</strong></p>
+
+                        <p>I will use the same user part that I did in part 1, but one difference is a new key <code>role</code> has been added to the database. which is to distinguish between instructor and student.</p>
+
+                        <p><strong>Instructor</strong> :
+                            can add/edit/delete course.
+                            can upload/delete files. (Each instructor has their own file management. files are not shareable with another instructor)
+                            can view <strong><em>own</em></strong> courses.</p>
+
+                        <p><strong>Student</strong> :
+                            can register/drop course.
+                            can view courses and doing the quizzes.</p>
+
+                        <p><strong>Database:</strong></p>
+                        <p>This database config is under the <code>config</code> folder.</p>
+                        <p><code>course_enroll</code>: store students registed courses.</p>
+                        <p> <code>course_list</code>: store all avilabe courses.</p>
+                        <p> <code>files</code>: store all files.</p>
+                        <p>  <code>news</code>: store notifications.</p>
+                        <p>  <code>users</code>: store all users.</p>
+
+                        <pre><code>CREATE TABLE `course_enroll` (
+  `id` int(60) NOT NULL,
+  `course_code` varchar(200) NOT NULL,
+  `user_id` int(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_list`
+--
+
+CREATE TABLE `course_list` (
+  `id` int(11) NOT NULL,
+  `course_code` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `files`
+--
+
+CREATE TABLE `files` (
+  `id` int(11) NOT NULL,
+  `file_name` varchar(100) NOT NULL,
+  `file_type` varchar(60) NOT NULL,
+  `user_id` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
+  `news` varchar(500) NOT NULL,
+  `user_id` int(60) NOT NULL,
+  `time` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `role` int(6) NOT NULL DEFAULT '0',
+  `email` varchar(200) DEFAULT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `salt` int(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+</code></pre>
+
+                        <p><strong>The EML Course structure logic:</strong></p>
+
+                        <ul>
+                            <li>start with<code>&lt;course code=""&gt;</code> put course code in the attribute.</li>
+
+                            <li>then  <code>overview</code> which is shown on register page and inculd:
+
+
+                                <ul>
+                                    <li><code>title</code></li>
+
+                                    <li><code>instructor</code></li>
+
+                                    <li><code>discipline</code></li>
+
+                                    <li><code>introduction</code></li></ul>
+                            </li>
+
+                            <li>next is <code>lesson</code>
+
+
+                                <ul>
+                                    <li><code>title</code> the title of the unit.</li>
+
+                                    <li>flowing  are each <code>section</code></li></ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>The EML Quiz structure logic:</strong></p>
+
+                        <ul>
+                            <li>each question use <code>&lt;question&gt;&lt;/question&gt;</code> split.  </li>
+
+                            <li>4 types can be used in <code>&lt;type&gt;&lt;/type&gt;</code> :
+
+
+                                <ul>
+                                    <li><code>&lt;type&gt;text&lt;/type&gt;</code></li>
+
+                                    <li><code>&lt;type&gt;radio&lt;/type&gt;</code></li>
+
+                                    <li><code>&lt;type&gt;checkbox&lt;/type&gt;</code></li>
+
+                                    <li><code>&lt;type&gt;number&lt;/type&gt;</code></li></ul>
+                            </li>
+
+                            <li><code>&lt;type&gt;checkbox&lt;/type&gt;</code> can have multi answer, others only one allowed.</li>
+
+                            <li><code>&lt;option answer="true"&gt;&lt;/option&gt;</code> is put the option of the question inside &lt;>, if this is correct answer put <code>answer="true"</code> in attribute, for <code>checkbox</code>,<code>radio</code> only.</li>
+
+                            <li><code>&lt;answer&gt;&lt;/answer&gt;</code> is put the correct answer inside &lt;>, for <code>text</code>,<code>number</code> only.</li>
+                        </ul>
+
+                        <p><strong>Html Element Parser:</strong></p>
+
+                        <ul>
+                            <li><code>&lt;title size=""&gt; text &lt;/title&gt;</code> is required from  <code>h1</code> to <code>h6</code> in <code>size</code>.</li>
+
+                            <li><code>&lt;text style=""&gt; text &lt;/text &gt;</code> if has <code>style</code> it will pasing to <code>&lt;p style=""&gt;text&lt;/p&gt;</code></li>
+
+                            <li><code>&lt;video height="300" width="100%" type="video/mp4"&gt;url&lt;/video&gt;</code>, <code>htight</code>, <code>width</code> and <code>type</code> is required.</li>
+
+                            <li><code>&lt;image width="42" height="42"&gt; url &lt;/image&gt;</code>, <code>width</code> and <code>height</code> is required.</li>
+
+                            <li><code>&lt;link href="url"&gt; text &lt;/link &gt;</code>, <code>href</code>,  is required.</li>
+
+                            <li><code>&lt;span&gt; text &lt;/span&gt;</code> is same as html <code>&lt;span&gt;</code> mark text in same line.</li>
+
+                            <li><code>&lt;strong&gt; text &lt;/strong&gt;</code> is same as html <code>&lt;strong&gt;</code> .</li>
+                        </ul>
+
+                        <p><strong>Example:</strong></p>
+
+                        <ul>
+                            <li>Two example XML files in <code>part2/example_eml</code> folder.  </li>
+                        </ul>
+
+                        <pre><code>&lt;?xml version="1.0"?&gt;
+&lt;course code="COMP466"&gt;  REQUIRED
+ &lt;overview&gt;  REQUIRED
+ &lt;title&gt;Advanced Technologies for Web-Based Systems&lt;/title&gt;  REQUIRED
+ &lt;instructor&gt;Dr.Wang&lt;/instructor&gt;  REQUIRED
+ &lt;discipline&gt;Computer Science&lt;/discipline&gt;  REQUIRED
+ &lt;introduction&gt;XXXX&lt;/introduction&gt;  REQUIRED
+ &lt;/overview&gt;
+ &lt;lesson belongs="1"&gt;  REQUIRED
+ &lt;title&gt;XXXX&lt;/title&gt;  REQUIRED
+ &lt;section&gt;
+ &lt;title size="h1"&gt;XXXX&lt;/title&gt;
+ &lt;/section&gt;
+ &lt;section&gt;
+ &lt;title size="h2"&gt;XXXX&lt;/title&gt;
+ &lt;/section&gt;
+ &lt;section&gt;
+ &lt;title size="h4"&gt;XXXX&lt;/title&gt;
+ &lt;text&gt;XXXX&lt;/text&gt;
+ &lt;/section&gt;
+ &lt;/lesson&gt;
+ &lt;quiz belongs="1"&gt;  REQUIRED
+ &lt;question&gt;
+ &lt;questionText&gt;What is the full name of HTML?&lt;/questionText&gt;
+ &lt;type&gt;text&lt;/type&gt;
+ &lt;answer&gt;XXXX&lt;/answer&gt;
+ &lt;/question&gt;
+ &lt;question&gt;
+ &lt;questionText&gt;XXXX&lt;/questionText&gt;
+ &lt;type&gt;radio&lt;/type&gt;
+ &lt;option answer="true"&gt;XXXX&lt;/option&gt;
+ &lt;option&gt;XXXX&lt;/option&gt;
+ &lt;/question&gt;
+ &lt;/quiz&gt;
+&lt;/course&gt;
+</code></pre>
+
+                        <p><strong>Guide as Student</strong></p>
+
+                        <ul>
+                            <li>select <code>student</code> in register page.</li>
+
+                            <li>select <code>register a course</code> on the right sidebar.</li>
+
+                            <li>then click <code>Register</code> button to register a course that avliable. (also students are able to drop a course in the page)</li>
+
+                            <li>the course will show up on the right sidebar just under the <code>YOUR COURSE</code>.</li>
+
+                            <li>click <code>Lesson</code> to view the unit, then click <code>Quiz</code> to do start a test.</li>
+
+                            <li>submit quiz to check the answer.</li>
+                        </ul>
+
+                        <p><strong>Guide as Instructor</strong></p>
+
+                        <ul>
+                            <li>select <code>student</code> in register page.</li>
+
+                            <li>click <code>Course Management</code> on the right sidebar.</li>
+
+                            <li>paste the <strong>EML</strong> into the textarea then click <code>submit</code> to the system.</li>
+
+                            <li>if parser successd, the course will show upunder the <code>YOUR COURSE</code>. .</li>
+
+                            <li>click <code>File Management</code> to upload or delete your files that may use in lesson.</li>
+
+                            <li>click <code>Delete</code> under <code>Course Management</code>  if need to delete a course. (if delete a course, all registed the course student will automatically drop).</li>
+
+                            <li><strong>the instructor can use only to manage a course/file that belongs to the instructor self.</strong></li>
+                        </ul>
+
+                        <h3 id="mytestenvironment">My test environment</h3>
+
+                        <p>This application is hosting on an Apache server; PHP 7, MySQL 5</p>
+
+                        <h4 id="onlinedemourlhttpstestyihuacatma2part2httpstestyihuacatma2part2">Online Demo Url : <a href="https://test.yihua.ca/TMA2/part2">https://test.yihua.ca/TMA2/part2</a></h4>
+
+                        <h4 id="teststudentaccount">Test student account</h4>
+
+                        <pre><code>user name:test2@test.com
+user password:123
+</code></pre>
+
+                        <h4 id="testinstructoraccount">Test instructor account</h4>
+
+                        <pre><code>user name:test@test.com
+user password:123
+</code></pre>
+                        <p><hr/>
+                        End of Readme, MAY/28/2019</p>
                     </div>
                 </div>
 
@@ -64,8 +383,8 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2019</span>
-                    <p style="text-transform: capitalize;color:red;font-weight: bold">Please Note this site is for COMP 466 Assignment 2 Demo Only. All Data Will Be Removed After this been Marked.</p>
+                    <span>Copyright &copy; Yihua 2019</span>
+                    <p style="text-transform: capitalize;color:red;font-weight: bold">Please Note this site is for COMP 466 Assignment 2 Demo Only. All Data Will Be Removed After this be Marked.</p>
 
                 </div>
             </div>
